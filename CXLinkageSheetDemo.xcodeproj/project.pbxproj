@@ -15,6 +15,13 @@
 		DC0FF0932140C4AC00B15B81 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0922140C4AC00B15B81 /* main.m */; };
 		DC0FF09D2140C4AC00B15B81 /* CXLinkageSheetDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF09C2140C4AC00B15B81 /* CXLinkageSheetDemoTests.m */; };
 		DC0FF0A82140C4AD00B15B81 /* CXLinkageSheetDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0A72140C4AC00B15B81 /* CXLinkageSheetDemoUITests.m */; };
+		DC0FF0B82140C60100B15B81 /* CXLinkageSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0B72140C60100B15B81 /* CXLinkageSheetView.m */; };
+		DC0FF0BC2140CEDA00B15B81 /* SimpleLinkageSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0BB2140CEDA00B15B81 /* SimpleLinkageSheetController.m */; };
+		DC0FF0BF2140CFBF00B15B81 /* CustomLinkageSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0BE2140CFBF00B15B81 /* CustomLinkageSheetController.m */; };
+		DC0FF0C22140FB9600B15B81 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0C12140FB9500B15B81 /* BaseTableViewCell.m */; };
+		DC0FF0C52140FBD000B15B81 /* CXLinkageSheetLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0C42140FBD000B15B81 /* CXLinkageSheetLeftCell.m */; };
+		DC0FF0C82140FBE800B15B81 /* CXLinkageSheetRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0C72140FBE800B15B81 /* CXLinkageSheetRightCell.m */; };
+		DC0FF0CE2141309400B15B81 /* CXLinkageSheetRightItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0CD2141309400B15B81 /* CXLinkageSheetRightItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +58,20 @@
 		DC0FF0A32140C4AC00B15B81 /* CXLinkageSheetDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CXLinkageSheetDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0FF0A72140C4AC00B15B81 /* CXLinkageSheetDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CXLinkageSheetDemoUITests.m; sourceTree = "<group>"; };
 		DC0FF0A92140C4AD00B15B81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DC0FF0B62140C60100B15B81 /* CXLinkageSheetView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CXLinkageSheetView.h; sourceTree = "<group>"; };
+		DC0FF0B72140C60100B15B81 /* CXLinkageSheetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CXLinkageSheetView.m; sourceTree = "<group>"; };
+		DC0FF0BA2140CEDA00B15B81 /* SimpleLinkageSheetController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SimpleLinkageSheetController.h; sourceTree = "<group>"; };
+		DC0FF0BB2140CEDA00B15B81 /* SimpleLinkageSheetController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SimpleLinkageSheetController.m; sourceTree = "<group>"; };
+		DC0FF0BD2140CFBF00B15B81 /* CustomLinkageSheetController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomLinkageSheetController.h; sourceTree = "<group>"; };
+		DC0FF0BE2140CFBF00B15B81 /* CustomLinkageSheetController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomLinkageSheetController.m; sourceTree = "<group>"; };
+		DC0FF0C02140FB9500B15B81 /* BaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
+		DC0FF0C12140FB9500B15B81 /* BaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewCell.m; sourceTree = "<group>"; };
+		DC0FF0C32140FBD000B15B81 /* CXLinkageSheetLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CXLinkageSheetLeftCell.h; sourceTree = "<group>"; };
+		DC0FF0C42140FBD000B15B81 /* CXLinkageSheetLeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CXLinkageSheetLeftCell.m; sourceTree = "<group>"; };
+		DC0FF0C62140FBE800B15B81 /* CXLinkageSheetRightCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CXLinkageSheetRightCell.h; sourceTree = "<group>"; };
+		DC0FF0C72140FBE800B15B81 /* CXLinkageSheetRightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CXLinkageSheetRightCell.m; sourceTree = "<group>"; };
+		DC0FF0CC2141309400B15B81 /* CXLinkageSheetRightItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CXLinkageSheetRightItem.h; sourceTree = "<group>"; };
+		DC0FF0CD2141309400B15B81 /* CXLinkageSheetRightItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CXLinkageSheetRightItem.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +122,12 @@
 		DC0FF0822140C4AB00B15B81 /* CXLinkageSheetDemo */ = {
 			isa = PBXGroup;
 			children = (
+				DC0FF0B52140C5C700B15B81 /* CXLinkageSheetView */,
 				DC0FF0832140C4AB00B15B81 /* AppDelegate.h */,
 				DC0FF0842140C4AB00B15B81 /* AppDelegate.m */,
 				DC0FF0862140C4AB00B15B81 /* ViewController.h */,
 				DC0FF0872140C4AB00B15B81 /* ViewController.m */,
+				DC0FF0B92140CEA700B15B81 /* Demo */,
 				DC0FF0892140C4AB00B15B81 /* Main.storyboard */,
 				DC0FF08C2140C4AC00B15B81 /* Assets.xcassets */,
 				DC0FF08E2140C4AC00B15B81 /* LaunchScreen.storyboard */,
@@ -130,6 +153,34 @@
 				DC0FF0A92140C4AD00B15B81 /* Info.plist */,
 			);
 			path = CXLinkageSheetDemoUITests;
+			sourceTree = "<group>";
+		};
+		DC0FF0B52140C5C700B15B81 /* CXLinkageSheetView */ = {
+			isa = PBXGroup;
+			children = (
+				DC0FF0C02140FB9500B15B81 /* BaseTableViewCell.h */,
+				DC0FF0C12140FB9500B15B81 /* BaseTableViewCell.m */,
+				DC0FF0B62140C60100B15B81 /* CXLinkageSheetView.h */,
+				DC0FF0B72140C60100B15B81 /* CXLinkageSheetView.m */,
+				DC0FF0C32140FBD000B15B81 /* CXLinkageSheetLeftCell.h */,
+				DC0FF0C42140FBD000B15B81 /* CXLinkageSheetLeftCell.m */,
+				DC0FF0C62140FBE800B15B81 /* CXLinkageSheetRightCell.h */,
+				DC0FF0C72140FBE800B15B81 /* CXLinkageSheetRightCell.m */,
+				DC0FF0CC2141309400B15B81 /* CXLinkageSheetRightItem.h */,
+				DC0FF0CD2141309400B15B81 /* CXLinkageSheetRightItem.m */,
+			);
+			path = CXLinkageSheetView;
+			sourceTree = "<group>";
+		};
+		DC0FF0B92140CEA700B15B81 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				DC0FF0BA2140CEDA00B15B81 /* SimpleLinkageSheetController.h */,
+				DC0FF0BB2140CEDA00B15B81 /* SimpleLinkageSheetController.m */,
+				DC0FF0BD2140CFBF00B15B81 /* CustomLinkageSheetController.h */,
+				DC0FF0BE2140CFBF00B15B81 /* CustomLinkageSheetController.m */,
+			);
+			path = Demo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,7 +317,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC0FF0882140C4AB00B15B81 /* ViewController.m in Sources */,
+				DC0FF0B82140C60100B15B81 /* CXLinkageSheetView.m in Sources */,
+				DC0FF0BF2140CFBF00B15B81 /* CustomLinkageSheetController.m in Sources */,
+				DC0FF0BC2140CEDA00B15B81 /* SimpleLinkageSheetController.m in Sources */,
 				DC0FF0932140C4AC00B15B81 /* main.m in Sources */,
+				DC0FF0CE2141309400B15B81 /* CXLinkageSheetRightItem.m in Sources */,
+				DC0FF0C52140FBD000B15B81 /* CXLinkageSheetLeftCell.m in Sources */,
+				DC0FF0C22140FB9600B15B81 /* BaseTableViewCell.m in Sources */,
+				DC0FF0C82140FBE800B15B81 /* CXLinkageSheetRightCell.m in Sources */,
 				DC0FF0852140C4AB00B15B81 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +495,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HYESWERZUZ;
 				INFOPLIST_FILE = CXLinkageSheetDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -451,6 +510,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HYESWERZUZ;
 				INFOPLIST_FILE = CXLinkageSheetDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
