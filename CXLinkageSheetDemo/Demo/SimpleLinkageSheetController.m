@@ -57,12 +57,12 @@
     _linkageSheetView.leftTitleArray = leftDataArray.copy;
     _linkageSheetView.rightTitleArray = rightDataArray.copy;
     _linkageSheetView.rightDetailArray = rightDetailArray.copy;
-    _linkageSheetView.showAllSheetBorder = YES;
     _linkageSheetView.sheetHeaderHeight = 60;
     _linkageSheetView.sheetRowHeight = 50;
     _linkageSheetView.sheetLeftTableWidth = 80.0;
     _linkageSheetView.sheetRightTableWidth = 100;
-//    _linkageSheetView.autoMinRightTableCount = 5;
+    _linkageSheetView.showAllSheetBorder = YES;
+    _linkageSheetView.pagingEnabled = YES;
     [_linkageSheetView reloadData];
 }
 

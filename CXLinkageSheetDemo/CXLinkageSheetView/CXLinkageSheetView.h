@@ -42,6 +42,7 @@
 
 
 @property (nonatomic, assign) BOOL showAllSheetBorder;
+@property (nonatomic, assign) BOOL pagingEnabled;
 
 - (void)reloadData;
 

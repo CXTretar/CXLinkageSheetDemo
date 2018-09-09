@@ -85,6 +85,7 @@
     _rightContentView.showsHorizontalScrollIndicator = NO;
     _rightContentView.contentSize = CGSizeMake(_contentSizeWidth, self.height);
     _rightContentView.bounces = NO;
+//    _rightContentView.pagingEnabled = YES;
     [self addSubview:_rightContentView];
     
     UIView *titleLabel = [self createTitleViewWithLeft:0 width:_sheetLeftTableWidth height:_sheetHeaderHeight title:@"" index:-1];
@@ -192,13 +193,34 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+
     if (scrollView == _leftTableView) {
         [_rightTableView setContentOffset:CGPointMake(_rightTableView.contentOffset.x, _leftTableView.contentOffset.y)];
     }
+
     if (scrollView == _rightTableView) {
+        
         [_leftTableView setContentOffset:CGPointMake(0, _rightTableView.contentOffset.y)];
     }
 }
+
+#pragma mark - UIScrollViewDelegate 分页滚动
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    if (scrollView == _rightContentView && _pagingEnabled) {
+        CGPoint targetOffset = [self nearestTargetOffsetForOffset:*targetContentOffset];
+        targetContentOffset->x = targetOffset.x;
+        targetContentOffset->y = targetOffset.y;
+    }
+}
+
+- (CGPoint)nearestTargetOffsetForOffset:(CGPoint)offset {
+    CGFloat pageSize =_sheetRightTableWidth;
+    NSInteger page = roundf(offset.x / pageSize);
+    CGFloat targetX = pageSize * page;
+    return CGPointMake(targetX, offset.y);
+}
+
 
 #pragma mark - 快速创建顶部标题栏视图
 
