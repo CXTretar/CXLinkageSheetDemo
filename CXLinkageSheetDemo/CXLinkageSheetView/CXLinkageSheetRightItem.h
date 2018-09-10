@@ -10,7 +10,6 @@
 
 @interface CXLinkageSheetRightItem : UIView
 
-@property (nonatomic, weak) UILabel *titleLabel;
 @property (nonatomic, strong) UIColor *lineColor;
 @property (nonatomic, assign) BOOL showBorder;
 

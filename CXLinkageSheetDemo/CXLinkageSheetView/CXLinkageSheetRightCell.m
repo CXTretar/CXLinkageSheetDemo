@@ -23,22 +23,24 @@
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
     
     while (self.contentView.subviews.count) {
         [self.contentView.subviews.lastObject removeFromSuperview];
     }
-
-    CGFloat width = self.bounds.size.width / _itemDataArray.count;
+    
+    CGFloat width = self.bounds.size.width / _itemCount;
     CGFloat height = self.bounds.size.height;
-    for (NSInteger i = 0; i < _itemDataArray.count; i ++) {
+    for (NSInteger i = 0; i < _itemCount; i ++) {
         CXLinkageSheetRightItem *item = [[CXLinkageSheetRightItem alloc]initWithFrame:CGRectMake(width * i, 0, width, height)];
-        item.titleLabel.text = _itemDataArray[i];
-        item.titleLabel.font = [UIFont systemFontOfSize:_textFont];
         item.showBorder = _showBorder;
         item.lineColor = _lineColor;
         [self.contentView addSubview:item];
+        
+        if ([_dataSourse respondsToSelector:@selector(createRightItemWithContentView:indexPath:itemIndex:)]) {
+            [item addSubview:[_dataSourse createRightItemWithContentView:item indexPath:self.indexPath itemIndex:i]];
+        }
     }
-    
 }
 
 

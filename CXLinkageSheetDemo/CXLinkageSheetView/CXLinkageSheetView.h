@@ -10,39 +10,87 @@
 
 @protocol CXLinkageSheetViewDataSource <NSObject>
 
-- (UITableViewCell *)leftTableView:(UITableView *)leftTableView rightTableView:(UITableView *)rightTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;
+@optional
 
+
+/**
+ SheetView 的section个数
+
+ @param leftTableView 左侧tablView
+ @return section section数
+ */
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)leftTableView;
+
+
+/**
+ SheetView 每个section的行数
+
+ @param leftTableView 左侧tablView
+ @param section 具体某一个section
+ @return 行数
+ */
+- (NSInteger)tableView:(UITableView *)leftTableView numberOfRowsInSection:(NSInteger)section;
+
+
+/**
+ SheetView 左侧表格格子内容视图
+
+ @param contentView 左侧格子父视图
+ @param indexPath 左侧格子的indexPath
+ @return 左侧格子内容视图
+ */
+- (UIView *)createLeftItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath;
+
+
+/**
+ SheetView 右侧表格格子内容视图
+
+ @param contentView 右侧格子父视图
+ @param indexPath 右侧格子的indexPath
+ @param itemIndex 右侧格子的横向Index
+ @return 右侧格子内容视图
+ */
+- (UIView *)createRightItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath itemIndex:(NSInteger)itemIndex;
+
+
+/**
+ SheetView 左侧顶部标题栏格子内容视图
+ 
+ @param titleContentView 左侧顶部标题栏格子父视图
+ @return 左侧顶部标题栏格子内容视图
+ */
+- (UIView *)leftTitleView:(UIView *)titleContentView;
+
+/**
+ SheetView 右侧顶部标题栏格子内容视图
+
+ @param titleContentView 右侧顶部标题栏格子父视图
+ @param index 右侧顶部标题栏index
+ @return 右侧顶部标题栏格子内容视图
+ */
 - (UIView *)rightTitleView:(UIView *)titleContentView index:(NSInteger)index;
-
-@end
-
-@protocol CXLinkageSheetViewDelegate <NSObject>
 
 @end
 
 @interface CXLinkageSheetView : UIView
 
 @property (nonatomic, weak, nullable) id <CXLinkageSheetViewDataSource> dataSource;
-@property (nonatomic, weak, nullable) id <CXLinkageSheetViewDelegate> delegate;
 
 
-@property (nonatomic, strong) NSArray <NSString *>*leftTitleArray;
-@property (nonatomic, strong) NSArray <NSString *>*rightTitleArray;
-@property (nonatomic, strong) NSArray <NSArray *>*rightDetailArray;
+@property (nonatomic, assign) NSInteger leftTableCount;         // 左边表格行数,即纵向行数,必须要赋值
+@property (nonatomic, assign) NSInteger rightTableCount;        // 右边表格行数,即横向行数,必须要赋值
 
-@property (nonatomic, strong) UIColor *sheetLineColor;
-@property (nonatomic, assign) NSInteger sheetRightTitleFont;
-@property (nonatomic, assign) NSInteger sheetLeftTitleFont;
-@property (nonatomic, assign) CGFloat sheetHeaderHeight;
-@property (nonatomic, assign) CGFloat sheetRowHeight;
-@property (nonatomic, assign) CGFloat sheetLeftTableWidth;
-@property (nonatomic, assign) CGFloat sheetRightTableWidth;
+@property (nonatomic, strong) UIColor *sheetLineColor;          // 表格分割线颜色, 默认为 [UIColor lightGrayColor]
+@property (nonatomic, assign) CGFloat sheetHeaderHeight;        // 表格头部高度, 默认 44.0f
+@property (nonatomic, assign) CGFloat sheetRowHeight;           // 表格行高, 默认 44.0f
+@property (nonatomic, assign) CGFloat sheetLeftTableWidth;      // 表格左侧宽度, 默认为整个表格的 1/3
+@property (nonatomic, assign) CGFloat sheetRightTableWidth;     // 表格右侧宽度, 默认为整个表格的 1/3
 
-@property (nonatomic, assign) NSInteger autoMinRightTableCount;
+@property (nonatomic, assign) NSInteger autoMinRightTableCount; // 自动分配表格右侧宽度,设置了这个值有会导致 sheetRightTableWidth 失效
 
 
-@property (nonatomic, assign) BOOL showAllSheetBorder;
-@property (nonatomic, assign) BOOL pagingEnabled;
+@property (nonatomic, assign) BOOL showAllSheetBorder;          // 展示所有格子的分割线
+@property (nonatomic, assign) BOOL pagingEnabled;               // 开启右侧表格横向滚动分页效果, 分页距离为 单个格子宽度
 
 - (void)reloadData;
 

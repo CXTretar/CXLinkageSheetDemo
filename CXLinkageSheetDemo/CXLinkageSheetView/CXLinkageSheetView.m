@@ -15,7 +15,7 @@
 #define CXScreenHeight [UIScreen mainScreen].bounds.size.height
 #define rgba(r,g,b,a)  [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 
-@interface CXLinkageSheetView ()<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface CXLinkageSheetView ()<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, CXLinkageSheetLeftCellDataSourse, CXLinkageSheetRightCellDataSourse>
 
 @property (nonatomic, strong) UITableView *leftTableView;     // 左侧标题TableView
 @property (nonatomic, strong) UITableView *rightTableView;    // 右侧内容TableView
@@ -40,15 +40,11 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.rightTitleArray = @[].copy;
-        self.leftTitleArray = @[].copy;
         self.sheetLineColor = [UIColor lightGrayColor];
-        self.sheetHeaderHeight = 40.f;
-        self.sheetRowHeight = 40.f;
+        self.sheetHeaderHeight = 44.f;
+        self.sheetRowHeight = 44.f;
         self.sheetLeftTableWidth = self.width / 3.0;
         self.sheetRightTableWidth = self.width / 3.0;
-        self.sheetRightTitleFont = 12;
-        self.sheetLeftTitleFont = 12;
         [self setupUI];
     }
     return self;
@@ -58,21 +54,25 @@
 
 - (void)reloadData {
     self.sheetLineColor = [UIColor lightGrayColor];
+    
     if (self.autoMinRightTableCount != 0) {
-
+        
         self.sheetRightTableWidth = (self.width - _sheetLeftTableWidth) / _autoMinRightTableCount;
-
+        if ((self.width - _sheetLeftTableWidth) > self.rightTableCount * self.sheetRightTableWidth) {
+            self.sheetRightTableWidth = (self.width - _sheetLeftTableWidth) / self.rightTableCount;
+        }
+        
     }
     
-    if ((self.width - _sheetLeftTableWidth) > self.rightTitleArray.count * self.sheetRightTableWidth) {
-        self.sheetRightTableWidth = (self.width - _sheetLeftTableWidth) / self.rightTitleArray.count;
-    }
+    self.contentSizeWidth = _sheetRightTableWidth * _rightTableCount;
     
-    self.contentSizeWidth = _sheetRightTableWidth * _rightTitleArray.count;
     while (self.subviews.count) {
         [self.subviews.lastObject removeFromSuperview];
     }
-    [self setupUI];
+    
+    if (self.leftTableCount && self.rightTableCount) {
+        [self setupUI];
+    }
 }
 
 #pragma mark - 创建视图控件
@@ -85,37 +85,37 @@
     _rightContentView.showsHorizontalScrollIndicator = NO;
     _rightContentView.contentSize = CGSizeMake(_contentSizeWidth, self.height);
     _rightContentView.bounces = NO;
-//    _rightContentView.pagingEnabled = YES;
     [self addSubview:_rightContentView];
     
-    UIView *titleLabel = [self createTitleViewWithLeft:0 width:_sheetLeftTableWidth height:_sheetHeaderHeight title:@"" index:-1];
+    UIView *titleLabel = [self createTitleViewWithLeft:0 width:_sheetLeftTableWidth height:_sheetHeaderHeight index:-1];
     [self addSubview:titleLabel];
     
-    for (int i = 0; i < self.rightTitleArray.count; i++) {
+    for (int i = 0; i < self.rightTableCount; i++) {
         CGFloat x = i * _sheetRightTableWidth;
-        UIView *titleView = [self createTitleViewWithLeft:x width:_sheetRightTableWidth height:_sheetHeaderHeight title:self.rightTitleArray[i] index:i];
+        UIView *titleView = [self createTitleViewWithLeft:x width:_sheetRightTableWidth height:_sheetHeaderHeight index:i];
         [_rightContentView addSubview:titleView];
     }
     [self configTableView];
     
     if (_showAllSheetBorder) {
-        UIView *leftLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, self.height)];
+        CGFloat height = self.height < (_sheetRowHeight * self.leftTableCount + _sheetHeaderHeight) ? self.height : (_sheetRowHeight * self.leftTableCount + _sheetHeaderHeight);
+        CGFloat width = self.width < (_sheetRightTableWidth * self.rightTableCount + _sheetLeftTableWidth) ? self.width : (_sheetRightTableWidth * self.rightTableCount + _sheetLeftTableWidth);
+        
+        UIView *leftLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, height)];
         leftLine.backgroundColor = _sheetLineColor;
         [self addSubview:leftLine];
         
-        UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(self.width - 1, 0, 1, self.height)];
+        UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(width - 1, 0, 1, height)];
         rightLine.backgroundColor = _sheetLineColor;
         [self addSubview:rightLine];
         
-        UIView *upLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 1)];
+        UIView *upLine = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, 1)];
         upLine.backgroundColor = _sheetLineColor;
         [self addSubview:upLine];
         
-        if (self.height < (_sheetRowHeight * self.leftTitleArray.count + _sheetHeaderHeight)) {
-            UIView *bottomLine = [[UIView alloc]initWithFrame:CGRectMake(0, self.height - 1, self.width, 1)];
-            bottomLine.backgroundColor = _sheetLineColor;
-            [self addSubview:bottomLine];
-        }
+        UIView *bottomLine = [[UIView alloc]initWithFrame:CGRectMake(0, height - 1, width, 1)];
+        bottomLine.backgroundColor = _sheetLineColor;
+        [self addSubview:bottomLine];
     }
 }
 
@@ -146,37 +146,42 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.leftTitleArray.count;
+    if ([_dataSource respondsToSelector:@selector(tableView:numberOfRowsInSection:)]) {
+        return [_dataSource tableView:tableView numberOfRowsInSection:section];
+        
+    }
+    return _leftTableCount;
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if ([_dataSource respondsToSelector:@selector(numberOfRowsInSection:)]) {
+        return  [_dataSource numberOfSectionsInTableView:tableView];
+    }
     return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (tableView == _leftTableView) {
-        if ([_dataSource respondsToSelector:@selector(leftTableView:rightTableView:cellForRowAtIndexPath:)]) {
-            return [_dataSource leftTableView:_leftTableView rightTableView:nil cellForRowAtIndexPath:indexPath];
-        }else {
-            CXLinkageSheetLeftCell *cell = [CXLinkageSheetLeftCell createCellWithTableView:tableView];
-            cell.titleLabel.text = self.leftTitleArray[indexPath.row];
-            cell.titleLabel.font = [UIFont systemFontOfSize:_sheetLeftTitleFont];
-            return cell;
-            
-        }
+        CXLinkageSheetLeftCell *cell = [CXLinkageSheetLeftCell createCellWithTableView:tableView ];
+        cell.showBorder = _showAllSheetBorder;
+        cell.indexPath = indexPath;
+        cell.lineColor = _sheetLineColor;
+        cell.showBorder = _showAllSheetBorder;
+        cell.dataSourse = self;
+        return cell;
         
     } else {
-        
         
         CXLinkageSheetRightCell *cell = [CXLinkageSheetRightCell createCellWithTableView:tableView];
         cell.itemWidth = _sheetRightTableWidth;
         cell.itemHeight = _sheetRowHeight;
-        cell.textFont = _sheetRightTitleFont;
         cell.lineColor = _sheetLineColor;
         cell.showBorder = _showAllSheetBorder;
-        cell.itemDataArray = self.rightDetailArray[indexPath.row];
-    
+        cell.itemCount = _rightTableCount;
+        cell.dataSourse = self;
+        cell.indexPath = indexPath;
         return cell;
     }
     
@@ -190,14 +195,34 @@
     return _sheetRowHeight;
 }
 
+#pragma mark - CXLinkageSheetLeftCellDataSourse
+
+- (UIView *)createRightItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath itemIndex:(NSInteger)itemIndex {
+    
+    if ([_dataSource respondsToSelector:@selector(createRightItemWithContentView:indexPath:itemIndex:)]) {
+        return [_dataSource createRightItemWithContentView:contentView indexPath:indexPath itemIndex:itemIndex];
+    }
+    return nil;
+}
+
+#pragma mark - CXLinkageSheetRightCellDataSourse
+
+- (UIView *)createLeftItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath {
+    
+    if ([_dataSource respondsToSelector:@selector(createLeftItemWithContentView:indexPath:)]) {
+        return [_dataSource createLeftItemWithContentView:contentView indexPath:indexPath];
+    }
+    return nil;
+}
+
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-
+    
     if (scrollView == _leftTableView) {
         [_rightTableView setContentOffset:CGPointMake(_rightTableView.contentOffset.x, _leftTableView.contentOffset.y)];
     }
-
+    
     if (scrollView == _rightTableView) {
         
         [_leftTableView setContentOffset:CGPointMake(0, _rightTableView.contentOffset.y)];
@@ -224,29 +249,23 @@
 
 #pragma mark - 快速创建顶部标题栏视图
 
-- (UIView *)createTitleViewWithLeft:(CGFloat)left width:(CGFloat)width height:(CGFloat)height title:(NSString *)title index:(NSInteger)index {
+- (UIView *)createTitleViewWithLeft:(CGFloat)left width:(CGFloat)width height:(CGFloat)height index:(NSInteger)index {
     UIView *bgView = [[UIView alloc]initWithFrame:CGRectMake(left, 0, width, height)];
-
-    if (title.length) {
+    
+    if (index >= 0) {
         
         if ([_dataSource respondsToSelector:@selector(rightTitleView:index:)]) {
-            
-            [_dataSource rightTitleView:bgView index:index];
-            
-        }else {
-            
-            UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, width, height)];
-            label.text = title;
-            label.textAlignment = NSTextAlignmentCenter;
-            label.font = [UIFont systemFontOfSize:_sheetRightTitleFont];
-            label.textAlignment = NSTextAlignmentCenter;
-            [bgView addSubview:label];
+            [bgView addSubview:[_dataSource rightTitleView:bgView index:index]];
+        }
+    }else {
+        if ([_dataSource respondsToSelector:@selector(leftTitleView:)]) {
+            [bgView addSubview:[_dataSource leftTitleView:bgView]];
         }
         
     }
     
     if (_showAllSheetBorder) {
-
+        
         UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, height - 1, width, 1)];
         bottomLine.backgroundColor = _sheetLineColor;
         [bgView addSubview:bottomLine];

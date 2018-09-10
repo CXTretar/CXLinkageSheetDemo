@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		14AE76CF5D5A8A9709E98356 /* libPods-CXLinkageSheetDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DDD448819BEFCACCCC7780B5 /* libPods-CXLinkageSheetDemo.a */; };
+		87207EC357E1DF5B12A120CF /* libPods-CXLinkageSheetDemoUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 364891ECAC99E61758CFC098 /* libPods-CXLinkageSheetDemoUITests.a */; };
+		9AAB7B7FD149A844F51D4DFB /* libPods-CXLinkageSheetDemoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EB6099F71A60CBEED5DCE91E /* libPods-CXLinkageSheetDemoTests.a */; };
 		DC0FF0852140C4AB00B15B81 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0842140C4AB00B15B81 /* AppDelegate.m */; };
 		DC0FF0882140C4AB00B15B81 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0872140C4AB00B15B81 /* ViewController.m */; };
 		DC0FF08B2140C4AB00B15B81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC0FF0892140C4AB00B15B81 /* Main.storyboard */; };
@@ -22,6 +25,9 @@
 		DC0FF0C52140FBD000B15B81 /* CXLinkageSheetLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0C42140FBD000B15B81 /* CXLinkageSheetLeftCell.m */; };
 		DC0FF0C82140FBE800B15B81 /* CXLinkageSheetRightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0C72140FBE800B15B81 /* CXLinkageSheetRightCell.m */; };
 		DC0FF0CE2141309400B15B81 /* CXLinkageSheetRightItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0CD2141309400B15B81 /* CXLinkageSheetRightItem.m */; };
+		DC1292A121465B9700F4EA5E /* CustomSheetLeftCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1292A021465B9700F4EA5E /* CustomSheetLeftCell.m */; };
+		DC1691622145142A00738140 /* custom_data.json in Resources */ = {isa = PBXBuildFile; fileRef = DC1691612145142A00738140 /* custom_data.json */; };
+		DC1691652145157500738140 /* CarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1691642145157500738140 /* CarModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +48,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27C552C9C7B50124FC78D012 /* Pods-CXLinkageSheetDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CXLinkageSheetDemoUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CXLinkageSheetDemoUITests/Pods-CXLinkageSheetDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2A29F599D060EBB14E3F0587 /* Pods-CXLinkageSheetDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CXLinkageSheetDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CXLinkageSheetDemo/Pods-CXLinkageSheetDemo.release.xcconfig"; sourceTree = "<group>"; };
+		364891ECAC99E61758CFC098 /* libPods-CXLinkageSheetDemoUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CXLinkageSheetDemoUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		998143ECA2AC9392D62E6131 /* Pods-CXLinkageSheetDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CXLinkageSheetDemoTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CXLinkageSheetDemoTests/Pods-CXLinkageSheetDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		A9EF9876974B59C9EC42FADB /* Pods-CXLinkageSheetDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CXLinkageSheetDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CXLinkageSheetDemo/Pods-CXLinkageSheetDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		C6998A8FA37FE68EC3433CF4 /* Pods-CXLinkageSheetDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CXLinkageSheetDemoUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CXLinkageSheetDemoUITests/Pods-CXLinkageSheetDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DC0FF0802140C4AB00B15B81 /* CXLinkageSheetDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CXLinkageSheetDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC0FF0832140C4AB00B15B81 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DC0FF0842140C4AB00B15B81 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -72,6 +84,14 @@
 		DC0FF0C72140FBE800B15B81 /* CXLinkageSheetRightCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CXLinkageSheetRightCell.m; sourceTree = "<group>"; };
 		DC0FF0CC2141309400B15B81 /* CXLinkageSheetRightItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CXLinkageSheetRightItem.h; sourceTree = "<group>"; };
 		DC0FF0CD2141309400B15B81 /* CXLinkageSheetRightItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CXLinkageSheetRightItem.m; sourceTree = "<group>"; };
+		DC12929F21465B9700F4EA5E /* CustomSheetLeftCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomSheetLeftCell.h; sourceTree = "<group>"; };
+		DC1292A021465B9700F4EA5E /* CustomSheetLeftCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomSheetLeftCell.m; sourceTree = "<group>"; };
+		DC1691612145142A00738140 /* custom_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom_data.json; sourceTree = "<group>"; };
+		DC1691632145157500738140 /* CarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarModel.h; sourceTree = "<group>"; };
+		DC1691642145157500738140 /* CarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarModel.m; sourceTree = "<group>"; };
+		DDD448819BEFCACCCC7780B5 /* libPods-CXLinkageSheetDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CXLinkageSheetDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB6099F71A60CBEED5DCE91E /* libPods-CXLinkageSheetDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CXLinkageSheetDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF2A8FA83AC88CEC801714F9 /* Pods-CXLinkageSheetDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CXLinkageSheetDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CXLinkageSheetDemoTests/Pods-CXLinkageSheetDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				14AE76CF5D5A8A9709E98356 /* libPods-CXLinkageSheetDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AAB7B7FD149A844F51D4DFB /* libPods-CXLinkageSheetDemoTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,12 +115,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87207EC357E1DF5B12A120CF /* libPods-CXLinkageSheetDemoUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3EF4BAC37AD94B569DED13A3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A9EF9876974B59C9EC42FADB /* Pods-CXLinkageSheetDemo.debug.xcconfig */,
+				2A29F599D060EBB14E3F0587 /* Pods-CXLinkageSheetDemo.release.xcconfig */,
+				FF2A8FA83AC88CEC801714F9 /* Pods-CXLinkageSheetDemoTests.debug.xcconfig */,
+				998143ECA2AC9392D62E6131 /* Pods-CXLinkageSheetDemoTests.release.xcconfig */,
+				C6998A8FA37FE68EC3433CF4 /* Pods-CXLinkageSheetDemoUITests.debug.xcconfig */,
+				27C552C9C7B50124FC78D012 /* Pods-CXLinkageSheetDemoUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		DC0FF0772140C4AB00B15B81 = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +142,8 @@
 				DC0FF09B2140C4AC00B15B81 /* CXLinkageSheetDemoTests */,
 				DC0FF0A62140C4AC00B15B81 /* CXLinkageSheetDemoUITests */,
 				DC0FF0812140C4AB00B15B81 /* Products */,
+				3EF4BAC37AD94B569DED13A3 /* Pods */,
+				FC6DBFA420259FDB9B9D7DC6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -175,12 +213,27 @@
 		DC0FF0B92140CEA700B15B81 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				DC1691612145142A00738140 /* custom_data.json */,
 				DC0FF0BA2140CEDA00B15B81 /* SimpleLinkageSheetController.h */,
 				DC0FF0BB2140CEDA00B15B81 /* SimpleLinkageSheetController.m */,
+				DC1691632145157500738140 /* CarModel.h */,
+				DC1691642145157500738140 /* CarModel.m */,
 				DC0FF0BD2140CFBF00B15B81 /* CustomLinkageSheetController.h */,
 				DC0FF0BE2140CFBF00B15B81 /* CustomLinkageSheetController.m */,
+				DC12929F21465B9700F4EA5E /* CustomSheetLeftCell.h */,
+				DC1292A021465B9700F4EA5E /* CustomSheetLeftCell.m */,
 			);
 			path = Demo;
+			sourceTree = "<group>";
+		};
+		FC6DBFA420259FDB9B9D7DC6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DDD448819BEFCACCCC7780B5 /* libPods-CXLinkageSheetDemo.a */,
+				EB6099F71A60CBEED5DCE91E /* libPods-CXLinkageSheetDemoTests.a */,
+				364891ECAC99E61758CFC098 /* libPods-CXLinkageSheetDemoUITests.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -190,6 +243,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC0FF0AC2140C4AD00B15B81 /* Build configuration list for PBXNativeTarget "CXLinkageSheetDemo" */;
 			buildPhases = (
+				BC2E60158AD3AA7E15710093 /* [CP] Check Pods Manifest.lock */,
 				DC0FF07C2140C4AB00B15B81 /* Sources */,
 				DC0FF07D2140C4AB00B15B81 /* Frameworks */,
 				DC0FF07E2140C4AB00B15B81 /* Resources */,
@@ -207,6 +261,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC0FF0AF2140C4AD00B15B81 /* Build configuration list for PBXNativeTarget "CXLinkageSheetDemoTests" */;
 			buildPhases = (
+				92628283D95146BC2C227CC0 /* [CP] Check Pods Manifest.lock */,
 				DC0FF0942140C4AC00B15B81 /* Sources */,
 				DC0FF0952140C4AC00B15B81 /* Frameworks */,
 				DC0FF0962140C4AC00B15B81 /* Resources */,
@@ -225,6 +280,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC0FF0B22140C4AD00B15B81 /* Build configuration list for PBXNativeTarget "CXLinkageSheetDemoUITests" */;
 			buildPhases = (
+				C38800C5476A04BCAE45A0E8 /* [CP] Check Pods Manifest.lock */,
 				DC0FF09F2140C4AC00B15B81 /* Sources */,
 				DC0FF0A02140C4AC00B15B81 /* Frameworks */,
 				DC0FF0A12140C4AC00B15B81 /* Resources */,
@@ -289,6 +345,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1691622145142A00738140 /* custom_data.json in Resources */,
 				DC0FF0902140C4AC00B15B81 /* LaunchScreen.storyboard in Resources */,
 				DC0FF08D2140C4AC00B15B81 /* Assets.xcassets in Resources */,
 				DC0FF08B2140C4AB00B15B81 /* Main.storyboard in Resources */,
@@ -311,6 +368,63 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		92628283D95146BC2C227CC0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CXLinkageSheetDemoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BC2E60158AD3AA7E15710093 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CXLinkageSheetDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C38800C5476A04BCAE45A0E8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CXLinkageSheetDemoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		DC0FF07C2140C4AB00B15B81 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -323,7 +437,9 @@
 				DC0FF0932140C4AC00B15B81 /* main.m in Sources */,
 				DC0FF0CE2141309400B15B81 /* CXLinkageSheetRightItem.m in Sources */,
 				DC0FF0C52140FBD000B15B81 /* CXLinkageSheetLeftCell.m in Sources */,
+				DC1292A121465B9700F4EA5E /* CustomSheetLeftCell.m in Sources */,
 				DC0FF0C22140FB9600B15B81 /* BaseTableViewCell.m in Sources */,
+				DC1691652145157500738140 /* CarModel.m in Sources */,
 				DC0FF0C82140FBE800B15B81 /* CXLinkageSheetRightCell.m in Sources */,
 				DC0FF0852140C4AB00B15B81 /* AppDelegate.m in Sources */,
 			);
@@ -492,6 +608,7 @@
 		};
 		DC0FF0AD2140C4AD00B15B81 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A9EF9876974B59C9EC42FADB /* Pods-CXLinkageSheetDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -507,6 +624,7 @@
 		};
 		DC0FF0AE2140C4AD00B15B81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A29F599D060EBB14E3F0587 /* Pods-CXLinkageSheetDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -522,6 +640,7 @@
 		};
 		DC0FF0B02140C4AD00B15B81 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FF2A8FA83AC88CEC801714F9 /* Pods-CXLinkageSheetDemoTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -536,6 +655,7 @@
 		};
 		DC0FF0B12140C4AD00B15B81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 998143ECA2AC9392D62E6131 /* Pods-CXLinkageSheetDemoTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -550,6 +670,7 @@
 		};
 		DC0FF0B32140C4AD00B15B81 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6998A8FA37FE68EC3433CF4 /* Pods-CXLinkageSheetDemoUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CXLinkageSheetDemoUITests/Info.plist;
@@ -563,6 +684,7 @@
 		};
 		DC0FF0B42140C4AD00B15B81 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27C552C9C7B50124FC78D012 /* Pods-CXLinkageSheetDemoUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = CXLinkageSheetDemoUITests/Info.plist;

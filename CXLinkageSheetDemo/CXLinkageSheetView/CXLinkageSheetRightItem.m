@@ -31,11 +31,6 @@
     CGFloat width = self.bounds.size.width;
     CGFloat height = self.bounds.size.height;
     
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:self.bounds];
-    titleLabel.textAlignment = NSTextAlignmentCenter;
-    self.titleLabel = titleLabel;
-    [self addSubview:titleLabel];
-    
     UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(width - 1, 0, 1, height)];
     rightLine.hidden = YES;
     self.rightLine = rightLine;

@@ -11,6 +11,7 @@
 @interface BaseTableViewCell : UITableViewCell
 
 @property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, strong) NSIndexPath *indexPath;
 
 ///创建自定义cell
 + (instancetype _Nullable )createCellWithTableView:(UITableView *_Nullable)tableView;

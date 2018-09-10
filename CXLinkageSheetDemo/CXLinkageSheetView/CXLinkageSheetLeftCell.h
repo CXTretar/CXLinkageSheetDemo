@@ -8,10 +8,17 @@
 
 #import "BaseTableViewCell.h"
 
+@protocol CXLinkageSheetLeftCellDataSourse <NSObject>
+
+- (UIView *)createLeftItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath;
+
+@end
+
 @interface CXLinkageSheetLeftCell : BaseTableViewCell
 
-@property (nonatomic, weak) UILabel *titleLabel;
+@property (nonatomic, weak) id<CXLinkageSheetLeftCellDataSourse> dataSourse;
 
 @property (nonatomic, assign) BOOL showBorder;
+@property (nonatomic, strong) UIColor *lineColor;
 
 @end
