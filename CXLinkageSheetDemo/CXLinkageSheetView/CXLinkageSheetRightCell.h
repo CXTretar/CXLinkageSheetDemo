@@ -20,6 +20,7 @@
 @property (nonatomic, assign) CGFloat itemWidth;
 @property (nonatomic, assign) CGFloat itemHeight;
 @property (nonatomic, strong) UIColor *lineColor;
+@property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, assign) BOOL showBorder;
 
 @property (nonatomic, weak) id<CXLinkageSheetRightCellDataSourse> dataSourse;

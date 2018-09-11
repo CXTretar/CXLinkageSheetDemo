@@ -35,6 +35,7 @@
         CXLinkageSheetRightItem *item = [[CXLinkageSheetRightItem alloc]initWithFrame:CGRectMake(width * i, 0, width, height)];
         item.showBorder = _showBorder;
         item.lineColor = _lineColor;
+        item.lineWidth = _lineWidth;
         [self.contentView addSubview:item];
         
         if ([_dataSourse respondsToSelector:@selector(createRightItemWithContentView:indexPath:itemIndex:)]) {

@@ -36,7 +36,7 @@
     
     self.leftDataArray = @[].mutableCopy;
     
-    for (NSInteger i = 0; i < 12; i ++ ) {
+    for (NSInteger i = 0; i < 20; i ++ ) {
         NSString *leftString = [NSString stringWithFormat:@"竖 %ld", i];
         [_leftDataArray addObject:leftString];
     }
@@ -75,7 +75,6 @@
     label.text = self.leftDataArray[indexPath.row];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:11];
-    label.textAlignment = NSTextAlignmentCenter;
     return label;
 }
 
@@ -92,7 +91,6 @@
     label.text = @"标题栏";
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:11];
-    label.textAlignment = NSTextAlignmentCenter;
     return label;
 }
 
@@ -102,7 +100,6 @@
     label.text = self.rightDataArray[index];
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:11];
-    label.textAlignment = NSTextAlignmentCenter;
 
     return label;
 
