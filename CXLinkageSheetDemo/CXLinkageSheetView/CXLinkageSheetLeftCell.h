@@ -20,7 +20,5 @@
 
 @property (nonatomic, assign) BOOL showBorder;
 @property (nonatomic, strong) UIColor *lineColor;
-@property (nonatomic, assign) CGFloat lineWidth;
-@property (nonatomic, assign) CGFloat cellWidth;
 
 @end

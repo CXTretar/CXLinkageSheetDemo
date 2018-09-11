@@ -8,20 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PathResponseTableView : UITableView
-
-@property (nonatomic, strong) UIBezierPath *path;
-
-@end
-
-
 @protocol CXLinkageSheetViewDataSource <NSObject>
 
 @optional
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
 
 /**
  SheetView 的section个数
@@ -87,19 +77,17 @@
 @property (nonatomic, weak, nullable) id <CXLinkageSheetViewDataSource> dataSource;
 
 
-@property (nonatomic, assign) NSInteger leftTableCount;         // 左边表格行数,即纵向行数
+@property (nonatomic, assign) NSInteger leftTableCount;         // 左边表格行数,即纵向行数,必须要赋值
 @property (nonatomic, assign) NSInteger rightTableCount;        // 右边表格行数,即横向行数,必须要赋值
 
-@property (nonatomic, strong) UIColor *outLineColor;            // 表格外部分割线颜色, 默认为 [UIColor lightGrayColor]
-@property (nonatomic, assign) CGFloat outLineWidth;             // 表格分割线宽度, 默认为 1.0
-@property (nonatomic, strong) UIColor *innerLineColor;          // 表格内部格子分割线颜色, 默认为 [UIColor lightGrayColor]
-@property (nonatomic, assign) CGFloat innerLineWidth;           // 表格内部格子分割线宽度, 默认为 1.0
+@property (nonatomic, strong) UIColor *sheetLineColor;          // 表格分割线颜色, 默认为 [UIColor lightGrayColor]
 @property (nonatomic, assign) CGFloat sheetHeaderHeight;        // 表格头部高度, 默认 44.0f
 @property (nonatomic, assign) CGFloat sheetRowHeight;           // 表格行高, 默认 44.0f
 @property (nonatomic, assign) CGFloat sheetLeftTableWidth;      // 表格左侧宽度, 默认为整个表格的 1/3
 @property (nonatomic, assign) CGFloat sheetRightTableWidth;     // 表格右侧宽度, 默认为整个表格的 1/3
 
-@property (nonatomic, assign) NSInteger autoMinRightTableCount; // 自动分配表格右侧宽度, 右侧表格会显示该值对应的个数,设置了这个值有会导致 sheetRightTableWidth 失效
+@property (nonatomic, assign) NSInteger autoMinRightTableCount; // 自动分配表格右侧宽度,设置了这个值有会导致 sheetRightTableWidth 失效
+
 
 @property (nonatomic, assign) BOOL showAllSheetBorder;          // 展示所有格子的分割线
 @property (nonatomic, assign) BOOL pagingEnabled;               // 开启右侧表格横向滚动分页效果, 分页距离为 单个格子宽度

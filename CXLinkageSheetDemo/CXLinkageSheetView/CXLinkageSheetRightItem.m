@@ -22,7 +22,6 @@
     if (self = [super initWithFrame:frame]) {
         
         [self setupUI];
-        _lineWidth = 1.0f;
     }
     
     return self;
@@ -32,12 +31,12 @@
     CGFloat width = self.bounds.size.width;
     CGFloat height = self.bounds.size.height;
     
-    UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(width - _lineWidth, 0, _lineWidth, height)];
+    UIView *rightLine = [[UIView alloc] initWithFrame:CGRectMake(width - 1, 0, 1, height)];
     rightLine.hidden = YES;
     self.rightLine = rightLine;
     [self addSubview:rightLine];
     
-    UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, height - _lineWidth, width - _lineWidth, _lineWidth)];
+    UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, height - 1, width - 1, 1)];
     bottomLine.hidden = YES;
     self.bottomLine = bottomLine;
     [self addSubview:bottomLine];
@@ -54,14 +53,6 @@
     _lineColor = lineColor;
     _rightLine.backgroundColor = lineColor;
     _bottomLine.backgroundColor = lineColor;
-}
-
-- (void)setLineWidth:(CGFloat)lineWidth {
-    CGFloat width = self.bounds.size.width;
-    CGFloat height = self.bounds.size.height;
-    _rightLine.frame = CGRectMake(width - _lineWidth, 0, _lineWidth, height);
-    _bottomLine.frame = CGRectMake(0, height - _lineWidth, width - _lineWidth, _lineWidth);
-    
 }
 
 @end
