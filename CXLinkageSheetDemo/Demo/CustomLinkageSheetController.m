@@ -83,23 +83,42 @@
     [self.linkageSheetView reloadData];    
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (UIView *)viewForSheetViewHeaderInSection:(NSInteger)section {
     UIView *sectionHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CXScreenW, 30)];
     sectionHeader.backgroundColor = LightGrayColor;
+    
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(16, 0, CXScreenW / 4 - 16, 30)];
+    titleLabel.font = [UIFont systemFontOfSize:10];
+    titleLabel.textAlignment = NSTextAlignmentLeft;
+    titleLabel.numberOfLines = 0;
+    titleLabel.textColor = [UIColor blackColor];
+    GroupParamsModel *groupParamsModel = self.firstCarModel.groupParamsViewModelList[section];
+    titleLabel.text = groupParamsModel.groupName;
+    [sectionHeader addSubview:titleLabel];
+    
+    UILabel *detailLabel = [[UILabel alloc]initWithFrame:CGRectMake(CXScreenW - 80, 0, 80, 30)];
+    detailLabel.font = [UIFont systemFontOfSize:10];
+    detailLabel.textAlignment = NSTextAlignmentLeft;
+    detailLabel.numberOfLines = 0;
+    detailLabel.textColor = DarkGrayColor;
+    detailLabel.text = @"标配   选配 - 无";
+    [sectionHeader addSubview:detailLabel];
+    
     return sectionHeader;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+- (CGFloat)heightForSheetViewHeaderInSection:(NSInteger)section {
+    
     return 30;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)leftTableView {
+- (NSInteger)numberOfSectionsInSheetView {
     
     return self.firstCarModel.groupParamsViewModelList.count;
     
 }
 
-- (NSInteger)tableView:(UITableView *)leftTableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)numberOfRowsInSheetViewSection:(NSInteger)section {
     GroupParamsModel *groupParamsModel = self.firstCarModel.groupParamsViewModelList[section];
     
     return groupParamsModel.paramList.count;

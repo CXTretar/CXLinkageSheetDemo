@@ -30,7 +30,6 @@
 @end
 
 
-
 @interface CXLinkageSheetView ()<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, CXLinkageSheetLeftCellDataSourse, CXLinkageSheetRightCellDataSourse>
 
 @property (nonatomic, strong) PathResponseTableView *leftTableView;     // 左侧标题TableView
@@ -166,7 +165,8 @@
     _leftTableView.showsHorizontalScrollIndicator = NO;
     _leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _leftTableView.backgroundColor = [UIColor clearColor];
-    _leftTableView.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, 0, _sheetLeftTableWidth, self.height - _sheetHeaderHeight)];
+    _leftTableView.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, _sheetHeaderHeight, _sheetLeftTableWidth, self.height - _sheetHeaderHeight)];
+    [_leftTableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"UITableViewHeaderFooterView"];
     [self addSubview:_leftTableView];
     
 }
@@ -174,8 +174,8 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if ([_dataSource respondsToSelector:@selector(tableView:numberOfRowsInSection:)]) {
-        return [_dataSource tableView:tableView numberOfRowsInSection:section];
+    if ([_dataSource respondsToSelector:@selector(numberOfRowsInSheetViewSection:)]) {
+        return [_dataSource numberOfRowsInSheetViewSection:section];
         
     }
     return _leftTableCount;
@@ -183,8 +183,8 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if ([_dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
-        return  [_dataSource numberOfSectionsInTableView:tableView];
+    if ([_dataSource respondsToSelector:@selector(numberOfSectionsInSheetView)]) {
+        return  [_dataSource numberOfSectionsInSheetView];
     }
     return 1;
 }
@@ -223,15 +223,19 @@
 #pragma mark - UITableViewDelegate
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if ([_dataSource respondsToSelector:@selector(tableView:viewForHeaderInSection:)] && tableView == _leftTableView) {
-        return [_dataSource tableView:_leftTableView viewForHeaderInSection:section];
+    if (tableView == _leftTableView) {
+        UITableViewHeaderFooterView *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"UITableViewHeaderFooterView"];
+        if ([_dataSource respondsToSelector:@selector(viewForSheetViewHeaderInSection:)]) {
+            [headerView addSubview: [_dataSource viewForSheetViewHeaderInSection:section]];
+        }
+        return headerView;
     }
     return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if ([_dataSource respondsToSelector:@selector(tableView:heightForHeaderInSection:)]) {
-        return [_dataSource tableView:tableView heightForHeaderInSection:section];
+    if ([_dataSource respondsToSelector:@selector(heightForSheetViewHeaderInSection:)]) {
+        return [_dataSource heightForSheetViewHeaderInSection:section];
     }
     
     return CGFLOAT_MIN;
@@ -324,9 +328,6 @@
     
     return bgView;
 }
-
-
-
 
 - (UIViewController *)viewController {
     for (UIView *view = self; view; view = view.superview) {

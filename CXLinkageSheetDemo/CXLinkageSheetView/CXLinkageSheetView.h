@@ -19,27 +19,39 @@
 
 @optional
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section;
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section;
+
+/**
+ SheetView 每个section的样式
+
+ @param section 第几个section
+ @return section的视图样式
+ */
+- (UIView *)viewForSheetViewHeaderInSection:(NSInteger)section;
+
+/**
+ SheetView 每个section的高度
+
+ @param section 第几个section
+ @return section的高度
+ */
+- (CGFloat)heightForSheetViewHeaderInSection:(NSInteger)section;
 
 /**
  SheetView 的section个数
-
- @param leftTableView 左侧tablView
+ 
  @return section section数
  */
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)leftTableView;
+- (NSInteger)numberOfSectionsInSheetView;
 
 
 /**
  SheetView 每个section的行数
 
- @param leftTableView 左侧tablView
  @param section 具体某一个section
  @return 行数
  */
-- (NSInteger)tableView:(UITableView *)leftTableView numberOfRowsInSection:(NSInteger)section;
+- (NSInteger)numberOfRowsInSheetViewSection:(NSInteger)section;
 
 
 /**
