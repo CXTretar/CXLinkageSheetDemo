@@ -83,6 +83,17 @@
     [self.linkageSheetView reloadData];    
 }
 
+#pragma mark - CXLinkageSheetViewDataSource
+
+
+#pragma mark - 表格section数目
+
+- (NSInteger)numberOfSectionsInSheetView {
+    return self.firstCarModel.groupParamsViewModelList.count;
+}
+
+#pragma mark - 自定义表格section头部视图
+
 - (UIView *)viewForSheetViewHeaderInSection:(NSInteger)section {
     UIView *sectionHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, CXScreenW, 30)];
     sectionHeader.backgroundColor = LightGrayColor;
@@ -107,22 +118,21 @@
     return sectionHeader;
 }
 
+#pragma mark - 表格section头部视图高度
+
 - (CGFloat)heightForSheetViewHeaderInSection:(NSInteger)section {
-    
     return 30;
 }
 
-- (NSInteger)numberOfSectionsInSheetView {
-    
-    return self.firstCarModel.groupParamsViewModelList.count;
-    
-}
+#pragma mark - 表格每一个section的行数
 
 - (NSInteger)numberOfRowsInSheetViewSection:(NSInteger)section {
     GroupParamsModel *groupParamsModel = self.firstCarModel.groupParamsViewModelList[section];
     
     return groupParamsModel.paramList.count;
 }
+
+#pragma mark - 自定义表格左侧标题视图
 
 - (UIView *)createLeftItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, contentView.bounds.size.width - 20, contentView.bounds.size.height)];
@@ -138,6 +148,8 @@
     
     return label;
 }
+
+#pragma mark - 自定义表格右侧每一个格子的视图
 
 - (UIView *)createRightItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath itemIndex:(NSInteger)itemIndex {
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, contentView.bounds.size.width - 20, contentView.bounds.size.height)];
@@ -155,6 +167,8 @@
     return label;
 }
 
+#pragma mark - 自定义表格左上角视图
+
 - (UIView *)leftTitleView:(UIView *)titleContentView {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, titleContentView.bounds.size.width, titleContentView.bounds.size.height)];
     label.text = @"配置项";
@@ -164,8 +178,9 @@
     return label;
 }
 
+#pragma mark - 自定义表格右侧标题视图
+
 - (UIView *)rightTitleView:(UIView *)titleContentView index:(NSInteger)index {
-    
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, titleContentView.bounds.size.width - 20, titleContentView.bounds.size.height)];
     CarModel *carModel = self.dataArray[index];
     label.text = carModel.specName;

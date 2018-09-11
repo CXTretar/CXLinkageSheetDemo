@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PathResponseTableView : UITableView
+@interface PathResponseView : UIView
 
 @property (nonatomic, strong) UIBezierPath *path;
 

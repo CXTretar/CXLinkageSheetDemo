@@ -27,6 +27,7 @@
 		DC0FF0CE2141309400B15B81 /* CXLinkageSheetRightItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0FF0CD2141309400B15B81 /* CXLinkageSheetRightItem.m */; };
 		DC1691622145142A00738140 /* custom_data.json in Resources */ = {isa = PBXBuildFile; fileRef = DC1691612145142A00738140 /* custom_data.json */; };
 		DC1691652145157500738140 /* CarModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1691642145157500738140 /* CarModel.m */; };
+		DC9986B32147A97400AEC434 /* custom_data1.json in Resources */ = {isa = PBXBuildFile; fileRef = DC9986B22147A97300AEC434 /* custom_data1.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +87,7 @@
 		DC1691612145142A00738140 /* custom_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom_data.json; sourceTree = "<group>"; };
 		DC1691632145157500738140 /* CarModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CarModel.h; sourceTree = "<group>"; };
 		DC1691642145157500738140 /* CarModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarModel.m; sourceTree = "<group>"; };
+		DC9986B22147A97300AEC434 /* custom_data1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = custom_data1.json; sourceTree = "<group>"; };
 		DDD448819BEFCACCCC7780B5 /* libPods-CXLinkageSheetDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CXLinkageSheetDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB6099F71A60CBEED5DCE91E /* libPods-CXLinkageSheetDemoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CXLinkageSheetDemoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF2A8FA83AC88CEC801714F9 /* Pods-CXLinkageSheetDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CXLinkageSheetDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CXLinkageSheetDemoTests/Pods-CXLinkageSheetDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			children = (
 				DC0FF0BA2140CEDA00B15B81 /* SimpleLinkageSheetController.h */,
 				DC0FF0BB2140CEDA00B15B81 /* SimpleLinkageSheetController.m */,
+				DC9986B22147A97300AEC434 /* custom_data1.json */,
 				DC1691612145142A00738140 /* custom_data.json */,
 				DC1691632145157500738140 /* CarModel.h */,
 				DC1691642145157500738140 /* CarModel.m */,
@@ -341,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC1691622145142A00738140 /* custom_data.json in Resources */,
+				DC9986B32147A97400AEC434 /* custom_data1.json in Resources */,
 				DC0FF0902140C4AC00B15B81 /* LaunchScreen.storyboard in Resources */,
 				DC0FF08D2140C4AC00B15B81 /* Assets.xcassets in Resources */,
 				DC0FF08B2140C4AB00B15B81 /* Main.storyboard in Resources */,

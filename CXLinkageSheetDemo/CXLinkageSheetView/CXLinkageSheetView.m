@@ -15,7 +15,7 @@
 #define CXScreenHeight [UIScreen mainScreen].bounds.size.height
 #define rgba(r,g,b,a)  [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
 
-@implementation PathResponseTableView
+@implementation PathResponseView
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
     if (CGPathIsEmpty(self.path.CGPath)) {
@@ -32,7 +32,7 @@
 
 @interface CXLinkageSheetView ()<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, CXLinkageSheetLeftCellDataSourse, CXLinkageSheetRightCellDataSourse>
 
-@property (nonatomic, strong) PathResponseTableView *leftTableView;     // 左侧标题TableView
+@property (nonatomic, strong) UITableView *leftTableView;     // 左侧标题TableView
 @property (nonatomic, strong) UITableView *rightTableView;    // 右侧内容TableView
 @property (nonatomic, strong) UIScrollView *rightContentView; // 右侧底部内容容器
 
@@ -157,7 +157,7 @@
     _rightTableView.backgroundColor = [UIColor clearColor];
     [_rightContentView addSubview:_rightTableView];
     
-    self.leftTableView = [[PathResponseTableView alloc] initWithFrame:CGRectMake(0, _sheetHeaderHeight, self.width, self.height - _sheetHeaderHeight) style:UITableViewStylePlain];
+    self.leftTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, _sheetHeaderHeight, self.width, self.height - _sheetHeaderHeight) style:UITableViewStylePlain];
     _leftTableView.dataSource = self;
     _leftTableView.delegate = self;
     _leftTableView.bounces = NO;
@@ -165,9 +165,14 @@
     _leftTableView.showsHorizontalScrollIndicator = NO;
     _leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _leftTableView.backgroundColor = [UIColor clearColor];
-    _leftTableView.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, _sheetHeaderHeight, _sheetLeftTableWidth, self.height - _sheetHeaderHeight)];
     [_leftTableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"UITableViewHeaderFooterView"];
-    [self addSubview:_leftTableView];
+    
+    PathResponseView *leftBgView = [[PathResponseView alloc]initWithFrame:self.leftTableView.bounds];
+    
+    leftBgView.path = [UIBezierPath bezierPathWithRect:CGRectMake(0, _sheetHeaderHeight, _sheetLeftTableWidth, self.height - _sheetHeaderHeight)];
+    
+    [leftBgView addSubview:self.leftTableView];
+    [self addSubview:leftBgView];
     
 }
 
