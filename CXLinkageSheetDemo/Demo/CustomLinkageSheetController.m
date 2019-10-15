@@ -15,10 +15,10 @@
 #define CXScreenH [UIScreen mainScreen].bounds.size.height
 
 #define iphoneX (CXScreenH >= 812.0f)
-#define kBottomHeight (iphoneX ? -34 : 0)
-#define kStatusBarHeight (iphoneX ? 44 : 20)
+#define kBottomHeight (iphoneX ? -34.0 : 0)
+#define kStatusBarHeight (iphoneX ? 44.0 : 20)
 #define kNavBarHeight 44.0
-#define kTabBarHeight (iphoneX ? 83 : 49)
+#define kTabBarHeight (iphoneX ? 83.0 : 49.0)
 #define kTopHeight (kStatusBarHeight + kNavBarHeight)
 
 #define RGBA(r,g,b,a)  [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]

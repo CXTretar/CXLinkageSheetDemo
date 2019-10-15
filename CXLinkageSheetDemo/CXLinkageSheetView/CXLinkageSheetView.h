@@ -10,7 +10,7 @@
 
 @interface PathResponseView : UIView
 
-@property (nonatomic, strong) UIBezierPath *path;
+@property (nonatomic, strong) UIBezierPath * _Nullable path;
 
 @end
 
@@ -19,19 +19,17 @@
 
 @optional
 
-
-
 /**
  SheetView 每个section的样式
-
+ 
  @param section 第几个section
  @return section的视图样式
  */
-- (UIView *)viewForSheetViewHeaderInSection:(NSInteger)section;
+- (UIView *_Nullable)viewForSheetViewHeaderInSection:(NSInteger)section;
 
 /**
  SheetView 每个section的高度
-
+ 
  @param section 第几个section
  @return section的高度
  */
@@ -47,7 +45,7 @@
 
 /**
  SheetView 每个section的行数
-
+ 
  @param section 具体某一个section
  @return 行数
  */
@@ -56,23 +54,23 @@
 
 /**
  SheetView 左侧表格格子内容视图
-
+ 
  @param contentView 左侧格子父视图
  @param indexPath 左侧格子的indexPath
  @return 左侧格子内容视图
  */
-- (UIView *)createLeftItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath;
+- (UIView *_Nullable)createLeftItemWithContentView:(UIView *_Nullable)contentView indexPath:(NSIndexPath *_Nullable)indexPath;
 
 
 /**
  SheetView 右侧表格格子内容视图
-
+ 
  @param contentView 右侧格子父视图
  @param indexPath 右侧格子的indexPath
  @param itemIndex 右侧格子的横向Index
  @return 右侧格子内容视图
  */
-- (UIView *)createRightItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath itemIndex:(NSInteger)itemIndex;
+- (UIView *_Nullable)createRightItemWithContentView:(UIView *_Nullable)contentView indexPath:(NSIndexPath *_Nullable)indexPath itemIndex:(NSInteger)itemIndex;
 
 
 /**
@@ -81,16 +79,16 @@
  @param titleContentView 左侧顶部标题栏格子父视图
  @return 左侧顶部标题栏格子内容视图
  */
-- (UIView *)leftTitleView:(UIView *)titleContentView;
+- (UIView *_Nullable)leftTitleView:(UIView *_Nullable)titleContentView;
 
 /**
  SheetView 右侧顶部标题栏格子内容视图
-
+ 
  @param titleContentView 右侧顶部标题栏格子父视图
  @param index 右侧顶部标题栏index
  @return 右侧顶部标题栏格子内容视图
  */
-- (UIView *)rightTitleView:(UIView *)titleContentView index:(NSInteger)index;
+- (UIView *_Nullable)rightTitleView:(UIView *_Nullable)titleContentView index:(NSInteger)index;
 
 @end
 
@@ -98,13 +96,12 @@
 
 @property (nonatomic, weak, nullable) id <CXLinkageSheetViewDataSource> dataSource;
 
-
 @property (nonatomic, assign) NSInteger leftTableCount;         // 左边表格行数,即纵向行数
 @property (nonatomic, assign) NSInteger rightTableCount;        // 右边表格行数,即横向行数,必须要赋值
 
-@property (nonatomic, strong) UIColor *outLineColor;            // 表格外部分割线颜色, 默认为 [UIColor lightGrayColor]
+@property (nonatomic, strong) UIColor * _Nullable outLineColor;            // 表格外部分割线颜色, 默认为 [UIColor lightGrayColor]
 @property (nonatomic, assign) CGFloat outLineWidth;             // 表格分割线宽度, 默认为 1.0
-@property (nonatomic, strong) UIColor *innerLineColor;          // 表格内部格子分割线颜色, 默认为 [UIColor lightGrayColor]
+@property (nonatomic, strong) UIColor * _Nullable innerLineColor;          // 表格内部格子分割线颜色, 默认为 [UIColor lightGrayColor]
 @property (nonatomic, assign) CGFloat innerLineWidth;           // 表格内部格子分割线宽度, 默认为 1.0
 @property (nonatomic, assign) CGFloat sheetHeaderHeight;        // 表格头部高度, 默认 44.0f
 @property (nonatomic, assign) CGFloat sheetRowHeight;           // 表格行高, 默认 44.0f

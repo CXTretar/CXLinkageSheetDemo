@@ -2,33 +2,32 @@
 #  Be sure to run `pod spec lint CXLinkageSheetView.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
-#  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
+#  To learn more about Podspec attributes see https://guides.cocoapods.org/syntax/podspec.html
 #  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
 #
 
-Pod::Spec.new do |s|
+Pod::Spec.new do |spec|
 
-s.name         = "CXLinkageSheetView"
-s.version      = "0.0.1"
-s.summary      = "CXLinkageSheetView"
+  spec.name         = "CXLinkageSheetView"
+  spec.version      = "0.0.2"
+  spec.summary      = "CXLinkageSheetView"
 
-s.description  = <<-DESC
 
-使用 CXLinkageSheetView 可以自定义一个具有横向以及纵向滚动的表格视图控件
+  spec.description  = <<-DESC
+  一个同时支持横向和纵向滚动的表格框架控件，适用于一些数据展示页面
+                   DESC
 
-DESC
+  spec.homepage     = "https://github.com/CXTretar/CXLinkageSheetDemo"
 
-s.homepage     = "https://github.com/CXTretar/CXLinkageSheetDemo"
-s.license      = "MIT"
+  spec.license      = "MIT"
 
-s.author       = { "CXTretar" => "misscxuan@163.com" }
+  spec.author             = { "CXTretar" => "misscxuan@163.com" }
 
-s.platform     = :ios, "8.0"
+  spec.platform     = :ios, "9.0"
 
-s.source       = { :git => "https://github.com/CXTretar/CXLinkageSheetDemo.git", :tag => s.version.to_s }
+  spec.source       = { :git => "https://github.com/CXTretar/CXLinkageSheetDemo.git", :tag => spec.version.to_s }
 
-s.source_files  = "CXLinkageSheetDemo/CXLinkageSheetView/*.{h,m}"
-
-s.requires_arc = true
-
+  spec.source_files  = "CXLinkageSheetDemo/CXLinkageSheetView/*.{h,m}"
+  spec.requires_arc = true
+  
 end
