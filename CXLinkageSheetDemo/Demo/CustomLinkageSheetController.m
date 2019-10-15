@@ -14,7 +14,7 @@
 #define CXScreenW [UIScreen mainScreen].bounds.size.width
 #define CXScreenH [UIScreen mainScreen].bounds.size.height
 
-#define iphoneX (CXScreenH == 812.0f)
+#define iphoneX (CXScreenH >= 812.0f)
 #define kBottomHeight (iphoneX ? -34 : 0)
 #define kStatusBarHeight (iphoneX ? 44 : 20)
 #define kNavBarHeight 44.0
