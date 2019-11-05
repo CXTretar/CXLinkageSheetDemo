@@ -122,7 +122,6 @@
 #### 创建视图
 ```
     self.linkageSheetView = [[CXLinkageSheetView alloc]initWithFrame:CGRectMake(0, kTopHeight, CXScreenW, CXScreenH - kTopHeight)];
-    _linkageSheetView.dataSource = self;
     _linkageSheetView.sheetHeaderHeight = 60;
     _linkageSheetView.sheetRowHeight = 50;
     _linkageSheetView.sheetLeftTableWidth = CXScreenW / 4;
