@@ -247,7 +247,7 @@
 }
 
 ```
-#### 点击事件
+#### 通过 CXLinkageSheetViewDelegate 点击事件
 ```
 #pragma mark - 左侧表格视图点击事件
 
