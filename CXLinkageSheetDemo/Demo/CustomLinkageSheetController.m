@@ -26,7 +26,7 @@
 #define LightGrayColor  RGBA(242, 241, 239, 1)
 #define DarkGrayColor   RGBA(119, 119, 119, 1)
 
-@interface CustomLinkageSheetController ()<CXLinkageSheetViewDataSource>
+@interface CustomLinkageSheetController ()<CXLinkageSheetViewDataSource, CXLinkageSheetViewDelegate>
 
 @property (nonatomic, strong) CXLinkageSheetView *linkageSheetView;
 @property (nonatomic, strong) NSArray *dataArray;
@@ -56,6 +56,7 @@
 - (void)setupUI {
     
     self.linkageSheetView = [[CXLinkageSheetView alloc]initWithFrame:CGRectMake(0, kTopHeight, CXScreenW, CXScreenH - kTopHeight)];
+    _linkageSheetView.delegate = self;
     _linkageSheetView.dataSource = self;
     _linkageSheetView.sheetHeaderHeight = 60;
     _linkageSheetView.sheetRowHeight = 50;
@@ -81,6 +82,27 @@
     
     self.linkageSheetView.rightTableCount = self.dataArray.count;
     [self.linkageSheetView reloadData];    
+}
+
+#pragma mark - CXLinkageSheetViewDelegate
+
+#pragma mark - 左侧表格视图点击事件
+
+- (void)leftTableView:(UITableView * _Nullable)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nullable)indexPath {
+    GroupParamsModel *groupParamsModel = self.firstCarModel.groupParamsViewModelList[indexPath.section];
+    ParamlistModel *paramlistModel = groupParamsModel.paramList[indexPath.row];
+
+    NSLog(@"%@ -- %@", indexPath, paramlistModel.yy_modelDescription);
+}
+
+#pragma mark - 右侧表格视图点击事件
+
+- (void)rightTableView:(UITableView *_Nullable)tableView didSelectRowAtIndexPath:(NSIndexPath *_Nullable)indexPath andItemIndex:(NSInteger )itemIndex {
+    CarModel *carModel = self.dataArray[itemIndex];
+    GroupParamsModel *groupParamsModel = carModel.groupParamsViewModelList[indexPath.section];
+    ParamlistModel *paramlistModel = groupParamsModel.paramList[indexPath.row];
+    
+    NSLog(@"%@ -- %ld -- %@", indexPath, (long)itemIndex, paramlistModel.yy_modelDescription);
 }
 
 #pragma mark - CXLinkageSheetViewDataSource

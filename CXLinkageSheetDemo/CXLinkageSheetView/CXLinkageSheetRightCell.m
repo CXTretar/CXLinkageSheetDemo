@@ -36,11 +36,19 @@
         item.showBorder = _showBorder;
         item.lineColor = _lineColor;
         item.lineWidth = _lineWidth;
+        item.tag = i;
+        [item addTarget:self action:@selector(itemClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.contentView addSubview:item];
         
         if ([_dataSourse respondsToSelector:@selector(createRightItemWithContentView:indexPath:itemIndex:)]) {
             [item addSubview:[_dataSourse createRightItemWithContentView:item indexPath:self.indexPath itemIndex:i]];
         }
+    }
+}
+
+- (void)itemClick:(CXLinkageSheetRightItem *)item {
+    if ([_delegate respondsToSelector:@selector(didSelectRowAtIndexPath:andItemIndex:)]) {
+        [_delegate didSelectRowAtIndexPath:self.indexPath andItemIndex:item.tag];
     }
 }
 

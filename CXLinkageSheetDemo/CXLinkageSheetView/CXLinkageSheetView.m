@@ -30,7 +30,7 @@
 @end
 
 
-@interface CXLinkageSheetView ()<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, CXLinkageSheetLeftCellDataSourse, CXLinkageSheetRightCellDataSourse>
+@interface CXLinkageSheetView ()<UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, CXLinkageSheetLeftCellDataSourse, CXLinkageSheetRightCellDataSourse, CXLinkageSheetRightCellDelegate>
 
 @property (nonatomic, strong) UITableView *leftTableView;     // 左侧标题TableView
 @property (nonatomic, strong) UITableView *rightTableView;    // 右侧内容TableView
@@ -219,6 +219,7 @@
         cell.itemCount = _rightTableCount;
         cell.dataSourse = self;
         cell.indexPath = indexPath;
+        cell.delegate = self;
         return cell;
     }
     
@@ -252,6 +253,12 @@
     return _sheetRowHeight;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([tableView isEqual:_leftTableView] && [_delegate respondsToSelector:@selector(leftTableView:didSelectRowAtIndexPath:)]) {
+        [_delegate leftTableView:tableView didSelectRowAtIndexPath:indexPath];
+    }
+}
+
 #pragma mark - CXLinkageSheetLeftCellDataSourse
 
 - (UIView *)createRightItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath itemIndex:(NSInteger)itemIndex {
@@ -270,6 +277,14 @@
         return [_dataSource createLeftItemWithContentView:contentView indexPath:indexPath];
     }
     return nil;
+}
+
+#pragma mark - CXLinkageSheetRightCellDelegate
+
+- (void)didSelectRowAtIndexPath:(NSIndexPath *_Nullable)indexPath andItemIndex:(NSInteger )itemIndex {
+    if ([_delegate respondsToSelector:@selector(rightTableView:didSelectRowAtIndexPath:andItemIndex:)]) {
+        [_delegate rightTableView:_rightTableView didSelectRowAtIndexPath:indexPath andItemIndex:itemIndex];
+    }
 }
 
 #pragma mark - UIScrollViewDelegate

@@ -14,6 +14,25 @@
 
 @end
 
+@protocol CXLinkageSheetViewDelegate <NSObject>
+
+@optional
+
+/// 左侧表格点击事件
+/// @param tableView 左侧tableView
+/// @param indexPath 点击的indexPath
+
+- (void)leftTableView:(UITableView *_Nullable)tableView didSelectRowAtIndexPath:(NSIndexPath *_Nullable)indexPath;
+
+
+/// 右侧侧表格点击事件
+/// @param tableView 右侧tableView
+/// @param indexPath 点击的那一行的indexPath
+/// @param itemIndex 点击的那一行的从左往右的具体位置
+
+- (void)rightTableView:(UITableView *_Nullable)tableView didSelectRowAtIndexPath:(NSIndexPath *_Nullable)indexPath andItemIndex:(NSInteger )itemIndex;
+
+@end
 
 @protocol CXLinkageSheetViewDataSource <NSObject>
 
@@ -90,10 +109,12 @@
  */
 - (UIView *_Nullable)rightTitleView:(UIView *_Nullable)titleContentView index:(NSInteger)index;
 
+
 @end
 
 @interface CXLinkageSheetView : UIView
 
+@property (nonatomic, weak, nullable) id <CXLinkageSheetViewDelegate> delegate;
 @property (nonatomic, weak, nullable) id <CXLinkageSheetViewDataSource> dataSource;
 
 @property (nonatomic, assign) NSInteger leftTableCount;         // 左边表格行数,即纵向行数

@@ -10,7 +10,13 @@
 
 @protocol CXLinkageSheetRightCellDataSourse <NSObject>
 
-- (UIView *)createRightItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath itemIndex:(NSInteger)itemIndex;
+- (UIView *_Nullable)createRightItemWithContentView:(UIView *_Nullable)contentView indexPath:(NSIndexPath *_Nullable)indexPath itemIndex:(NSInteger)itemIndex;
+
+@end
+
+@protocol CXLinkageSheetRightCellDelegate <NSObject>
+
+- (void)didSelectRowAtIndexPath:(NSIndexPath *_Nullable)indexPath andItemIndex:(NSInteger )itemIndex;
 
 @end
 
@@ -19,10 +25,11 @@
 @property (nonatomic, assign) NSInteger itemCount;
 @property (nonatomic, assign) CGFloat itemWidth;
 @property (nonatomic, assign) CGFloat itemHeight;
-@property (nonatomic, strong) UIColor *lineColor;
+@property (nonatomic, strong) UIColor * _Nullable lineColor;
 @property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, assign) BOOL showBorder;
 
-@property (nonatomic, weak) id<CXLinkageSheetRightCellDataSourse> dataSourse;
+@property (nonatomic, weak) id<CXLinkageSheetRightCellDataSourse> _Nullable dataSourse;
+@property (nonatomic, weak) id<CXLinkageSheetRightCellDelegate> _Nullable delegate;
 
 @end

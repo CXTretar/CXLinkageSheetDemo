@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CXLinkageSheetRightItem : UIView
+@interface CXLinkageSheetRightItem : UIButton
 
 @property (nonatomic, strong) UIColor *lineColor;
 @property (nonatomic, assign) CGFloat lineWidth;
