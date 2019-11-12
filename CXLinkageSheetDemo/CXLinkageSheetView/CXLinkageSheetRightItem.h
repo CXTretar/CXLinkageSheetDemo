@@ -14,5 +14,4 @@
 @property (nonatomic, assign) CGFloat lineWidth;
 @property (nonatomic, assign) BOOL showBorder;
 
-
 @end
