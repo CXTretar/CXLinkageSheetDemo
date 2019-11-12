@@ -3,6 +3,9 @@
 ![normal](https://github.com/CXTretar/CXLinkageSheetDemo/blob/master/gif/normal.gif)
 ![custom](https://github.com/CXTretar/CXLinkageSheetDemo/blob/master/gif/custom.gif)
 
+# Update【更新】
+- 11.12 新增了左侧表格和右侧表格的点击事件。
+
 # Install【安装】
 
 在Podfile文件中添加`pod 'CXLinkageSheetView'`，并运行 `pod install`
@@ -241,6 +244,28 @@
     label.numberOfLines = 0;
     
     return label;
+}
+
+```
+#### 点击事件
+```
+#pragma mark - 左侧表格视图点击事件
+
+- (void)leftTableView:(UITableView * _Nullable)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nullable)indexPath {
+    GroupParamsModel *groupParamsModel = self.firstCarModel.groupParamsViewModelList[indexPath.section];
+    ParamlistModel *paramlistModel = groupParamsModel.paramList[indexPath.row];
+
+    NSLog(@"%@ -- %@", indexPath, paramlistModel.yy_modelDescription);
+}
+
+#pragma mark - 右侧表格视图点击事件
+
+- (void)rightTableView:(UITableView *_Nullable)tableView didSelectRowAtIndexPath:(NSIndexPath *_Nullable)indexPath andItemIndex:(NSInteger )itemIndex {
+    CarModel *carModel = self.dataArray[itemIndex];
+    GroupParamsModel *groupParamsModel = carModel.groupParamsViewModelList[indexPath.section];
+    ParamlistModel *paramlistModel = groupParamsModel.paramList[indexPath.row];
+    
+    NSLog(@"%@ -- %ld -- %@", indexPath, (long)itemIndex, paramlistModel.yy_modelDescription);
 }
 
 ```
