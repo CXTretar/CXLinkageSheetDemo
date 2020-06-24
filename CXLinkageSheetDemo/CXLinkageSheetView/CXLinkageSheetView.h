@@ -54,6 +54,11 @@
  */
 - (CGFloat)heightForSheetViewHeaderInSection:(NSInteger)section;
 
+
+- (CGFloat)heightForSheetViewForRowAtIndexPath:(NSIndexPath *_Nullable)indexPath;
+
+- (CGFloat)rightTableViewCellWidthForRowAtIndexPath:(NSIndexPath *_Nullable)indexPath andItemIndex:(NSInteger )itemIndex;
+
 /**
  SheetView 的section个数
  
@@ -120,9 +125,9 @@
 @property (nonatomic, assign) NSInteger leftTableCount;         // 左边表格行数,即纵向行数
 @property (nonatomic, assign) NSInteger rightTableCount;        // 右边表格行数,即横向行数,必须要赋值
 
-@property (nonatomic, strong) UIColor * _Nullable outLineColor;            // 表格外部分割线颜色, 默认为 [UIColor lightGrayColor]
+@property (nonatomic, strong) UIColor * _Nullable outLineColor; // 表格外部分割线颜色, 默认为 [UIColor lightGrayColor]
 @property (nonatomic, assign) CGFloat outLineWidth;             // 表格分割线宽度, 默认为 1.0
-@property (nonatomic, strong) UIColor * _Nullable innerLineColor;          // 表格内部格子分割线颜色, 默认为 [UIColor lightGrayColor]
+@property (nonatomic, strong) UIColor * _Nullable innerLineColor;  // 表格内部格子分割线颜色, 默认为 [UIColor lightGrayColor]
 @property (nonatomic, assign) CGFloat innerLineWidth;           // 表格内部格子分割线宽度, 默认为 1.0
 @property (nonatomic, assign) CGFloat sheetHeaderHeight;        // 表格头部高度, 默认 44.0f
 @property (nonatomic, assign) CGFloat sheetRowHeight;           // 表格行高, 默认 44.0f
@@ -133,6 +138,9 @@
 
 @property (nonatomic, assign) BOOL showAllSheetBorder;          // 展示所有格子的分割线
 @property (nonatomic, assign) BOOL pagingEnabled;               // 开启右侧表格横向滚动分页效果, 分页距离为 单个格子宽度
+@property (nonatomic, assign) BOOL bounceEnabled;               // 开启右侧表格横向滚动弹性效果
+@property (nonatomic, assign) BOOL showShadowBorder;            // 开启右侧表格横向滚动时,左侧表格边界阴影效果
+@property (nonatomic, assign) BOOL showsVerticalScrollIndicator;// 开启右侧表格垂直滚动指示器
 
 - (void)reloadData;
 

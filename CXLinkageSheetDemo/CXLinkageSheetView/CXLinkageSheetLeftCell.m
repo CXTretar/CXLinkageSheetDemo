@@ -30,6 +30,7 @@
     while (self.contentView.subviews.count) {
         [self.contentView.subviews.lastObject removeFromSuperview];
     }
+    CGFloat width = self.bounds.size.width;
     CGFloat height = self.bounds.size.height;
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _cellWidth, height)];
     [self.contentView addSubview:bgView];
@@ -39,7 +40,7 @@
     rightLine.hidden = !_showBorder;
     [self.contentView addSubview:rightLine];
     
-    UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, height - _lineWidth, _cellWidth - _lineWidth, _lineWidth)];
+    UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(0, height - _lineWidth, width - _lineWidth, _lineWidth)];
     bottomLine.backgroundColor = _lineColor;
     bottomLine.hidden = !_showBorder;
     [self.contentView addSubview:bottomLine];

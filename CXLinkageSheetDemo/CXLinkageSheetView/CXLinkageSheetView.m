@@ -41,6 +41,8 @@
 @property (nonatomic, assign) CGFloat width;
 @property (nonatomic, assign) CGFloat height;
 
+@property (nonatomic, strong) UIView *shadowBorderView;
+
 @end
 
 @implementation CXLinkageSheetView
@@ -52,14 +54,13 @@
 - (CGFloat)height {
     return self.bounds.size.height;
 }
-
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.outLineColor = [UIColor lightGrayColor];
         self.outLineWidth = 1.0;
         self.innerLineColor = [UIColor lightGrayColor];
         self.innerLineWidth = 1.0;
-
+        
         self.sheetHeaderHeight = 44.f;
         self.sheetRowHeight = 44.f;
         self.sheetLeftTableWidth = self.width / 3.0;
@@ -82,6 +83,7 @@
             self.sheetRightTableWidth = (self.width - _sheetLeftTableWidth) / self.rightTableCount;
         }
         
+        
     }
     
     self.contentSizeWidth = _sheetRightTableWidth * _rightTableCount;
@@ -98,13 +100,13 @@
 #pragma mark - 创建视图控件
 
 - (void)setupUI {
-    
     self.rightContentView = [[UIScrollView alloc] initWithFrame:CGRectMake(_sheetLeftTableWidth, 0, self.width - _sheetLeftTableWidth, self.height)];
     _rightContentView.delegate = self;
     _rightContentView.showsVerticalScrollIndicator = NO;
     _rightContentView.showsHorizontalScrollIndicator = NO;
     _rightContentView.contentSize = CGSizeMake(_contentSizeWidth, self.height);
-    _rightContentView.bounces = NO;
+    _rightContentView.bounces = _bounceEnabled;
+    
     if (@available(iOS 11.0, *)){
         _rightContentView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }else {
@@ -143,6 +145,52 @@
         bottomLine.backgroundColor = _outLineColor;
         [self addSubview:bottomLine];
     }
+    
+    CGFloat x = _sheetLeftTableWidth - 1;
+    CGFloat y = 0;
+    CGFloat width = 10;
+    CGFloat height = self.height;
+    _shadowBorderView = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    UIImageView *imageView = [self colorGradientChangeWithSize:CGSizeMake(width, height) startColor:[self getNewColorWith:[UIColor lightGrayColor] alpha:0.4] endColor:[self getNewColorWith:[UIColor lightGrayColor] alpha:0.1]];
+    [_shadowBorderView addSubview:imageView];
+}
+
+
+- (UIColor *)getNewColorWith:(UIColor *)color alpha:(CGFloat)alpha {
+    CGFloat red = 0.0;
+    CGFloat green = 0.0;
+    CGFloat blue = 0.0;
+    CGFloat oldAlpha = 0.0;
+    [color getRed:&red green:&green blue:&blue alpha:&oldAlpha];
+    UIColor *newColor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+    return newColor;
+}
+
+- (UIImageView *)colorGradientChangeWithSize:(CGSize)size
+                                  startColor:(UIColor *)startcolor
+                                    endColor:(UIColor *)endColor {
+    
+    if (CGSizeEqualToSize(size, CGSizeZero) || !startcolor || !endColor) {
+        return nil;
+    }
+    
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = CGRectMake(0, 0, size.width, size.height);
+    
+    CGPoint startPoint = CGPointZero;
+    gradientLayer.startPoint = startPoint;
+    
+    CGPoint endPoint = CGPointMake(1.0, 0.0);
+    
+    gradientLayer.endPoint = endPoint;
+    
+    gradientLayer.colors = @[(__bridge id)startcolor.CGColor, (__bridge id)endColor.CGColor];
+    UIGraphicsBeginImageContext(size);
+    [gradientLayer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
+    return imgView;
 }
 
 - (void)configTableView {
@@ -151,7 +199,7 @@
     _rightTableView.delegate = self;
     _rightTableView.dataSource = self;
     _rightTableView.bounces = NO;
-    _rightTableView.showsVerticalScrollIndicator = NO;
+    _rightTableView.showsVerticalScrollIndicator = _showsVerticalScrollIndicator;
     _rightTableView.showsHorizontalScrollIndicator = NO;
     _rightTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _rightTableView.backgroundColor = [UIColor clearColor];
@@ -165,6 +213,7 @@
     _leftTableView.showsHorizontalScrollIndicator = NO;
     _leftTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _leftTableView.backgroundColor = [UIColor clearColor];
+    
     [_leftTableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:@"UITableViewHeaderFooterView"];
     
     PathResponseView *leftBgView = [[PathResponseView alloc]initWithFrame:self.leftTableView.bounds];
@@ -173,7 +222,6 @@
     
     [leftBgView addSubview:self.leftTableView];
     [self addSubview:leftBgView];
-    
 }
 
 #pragma mark - UITableViewDataSource
@@ -249,7 +297,9 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    if ([self.dataSource respondsToSelector:@selector(heightForSheetViewForRowAtIndexPath:)]) {
+        return [self.dataSource heightForSheetViewForRowAtIndexPath:indexPath];
+    }
     return _sheetRowHeight;
 }
 
@@ -261,20 +311,20 @@
 
 #pragma mark - CXLinkageSheetLeftCellDataSourse
 
-- (UIView *)createRightItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath itemIndex:(NSInteger)itemIndex {
+- (UIView *)createLeftItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath {
     
-    if ([_dataSource respondsToSelector:@selector(createRightItemWithContentView:indexPath:itemIndex:)]) {
-        return [_dataSource createRightItemWithContentView:contentView indexPath:indexPath itemIndex:itemIndex];
+    if ([_dataSource respondsToSelector:@selector(createLeftItemWithContentView:indexPath:)]) {
+        return [_dataSource createLeftItemWithContentView:contentView indexPath:indexPath];
     }
     return nil;
 }
 
 #pragma mark - CXLinkageSheetRightCellDataSourse
 
-- (UIView *)createLeftItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath {
+- (UIView *)createRightItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath itemIndex:(NSInteger)itemIndex {
     
-    if ([_dataSource respondsToSelector:@selector(createLeftItemWithContentView:indexPath:)]) {
-        return [_dataSource createLeftItemWithContentView:contentView indexPath:indexPath];
+    if ([_dataSource respondsToSelector:@selector(createRightItemWithContentView:indexPath:itemIndex:)]) {
+        return [_dataSource createRightItemWithContentView:contentView indexPath:indexPath itemIndex:itemIndex];
     }
     return nil;
 }
@@ -303,12 +353,32 @@
 
 #pragma mark - UIScrollViewDelegate 分页滚动
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+     NSLog(@"%s", __func__);
+    if (scrollView == _rightContentView && scrollView.dragging) {
+        [self addSubview:_shadowBorderView];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    NSLog(@"%s", __func__);
+    if (scrollView == _rightContentView && !scrollView.dragging && !scrollView.decelerating) {
+        [_shadowBorderView removeFromSuperview];
+    }
+}
+
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
+    if (scrollView == _rightContentView && (targetContentOffset->x <= 0 || targetContentOffset->x >= _contentSizeWidth  - self.width + _sheetLeftTableWidth) && !scrollView.decelerating && !self.bounceEnabled) {
+        [_shadowBorderView removeFromSuperview];
+    }
+    
     if (scrollView == _rightContentView && _pagingEnabled) {
         CGPoint targetOffset = [self nearestTargetOffsetForOffset:*targetContentOffset];
         targetContentOffset->x = targetOffset.x;
         targetContentOffset->y = targetOffset.y;
+        
     }
+    
 }
 
 - (CGPoint)nearestTargetOffsetForOffset:(CGPoint)offset {

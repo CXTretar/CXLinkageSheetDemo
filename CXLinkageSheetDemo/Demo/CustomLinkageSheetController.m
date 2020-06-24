@@ -69,6 +69,7 @@
     _linkageSheetView.outLineWidth = 0.5f;
     _linkageSheetView.innerLineColor = LightGrayColor;
     _linkageSheetView.innerLineWidth = 1.0f;
+    _linkageSheetView.bounceEnabled = YES;
     [self.view addSubview:_linkageSheetView];
     
 }
@@ -143,6 +144,15 @@
 
 - (CGFloat)heightForSheetViewHeaderInSection:(NSInteger)section {
     return 30;
+}
+
+#pragma mark - 表格单独设置每一行的高度
+
+- (CGFloat)heightForSheetViewForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:0]]) {
+        return 100;
+    }
+    return 50;
 }
 
 #pragma mark - 表格每一个section的行数

@@ -18,7 +18,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.classArray = @[@"SimpleLinkageSheetController",@"CustomLinkageSheetController",@""].copy;
+    self.classArray = @[@"SimpleLinkageSheetController",@"CustomLinkageSheetController"].copy;
     [self setupUI];
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -29,6 +29,7 @@
     UITableView *tableView = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.rowHeight = 60;
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"UITableViewCell"];
     [self.view addSubview:tableView];
 }
@@ -53,8 +54,7 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+   [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSString *class = self.classArray[indexPath.row];
     id vc = [[NSClassFromString(class) alloc]init];
@@ -63,6 +63,8 @@
         VC.title = class;
         [self.navigationController pushViewController:VC animated:YES];
     }
+    
+ 
 }
 
 
