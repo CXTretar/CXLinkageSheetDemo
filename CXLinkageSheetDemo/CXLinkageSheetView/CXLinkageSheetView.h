@@ -55,9 +55,13 @@
 - (CGFloat)heightForSheetViewHeaderInSection:(NSInteger)section;
 
 
-- (CGFloat)heightForSheetViewForRowAtIndexPath:(NSIndexPath *_Nullable)indexPath;
+/**
+SheetView 每个row的高度
 
-- (CGFloat)rightTableViewCellWidthForRowAtIndexPath:(NSIndexPath *_Nullable)indexPath andItemIndex:(NSInteger )itemIndex;
+@param indexPath indexPath
+@return row的高度
+*/
+- (CGFloat)heightForSheetViewForRowAtIndexPath:(NSIndexPath *_Nullable)indexPath;
 
 /**
  SheetView 的section个数
@@ -139,8 +143,13 @@
 @property (nonatomic, assign) BOOL showAllSheetBorder;          // 展示所有格子的分割线
 @property (nonatomic, assign) BOOL pagingEnabled;               // 开启右侧表格横向滚动分页效果, 分页距离为 单个格子宽度
 @property (nonatomic, assign) BOOL bounceEnabled;               // 开启右侧表格横向滚动弹性效果
-@property (nonatomic, assign) BOOL showShadowBorder;            // 开启右侧表格横向滚动时,左侧表格边界阴影效果
 @property (nonatomic, assign) BOOL showsVerticalScrollIndicator;// 开启右侧表格垂直滚动指示器
+
+@property (nonatomic, assign) BOOL showScrollShadow;            // 开启右侧表格横向滚动时,左侧表格边界渐变颜色阴影
+@property (nonatomic, strong) UIColor * _Nullable scrollShadowColor; // 左侧表格边界渐变颜色, 默认为 [UIColor lightGrayColor]
+@property (nonatomic, assign) CGFloat scrollShadowWidth;             // 左侧表格边界渐变宽度, 默认为 10
+@property (nonatomic, assign) CGFloat maxScrollShadowColorAlpha;     // 左侧表格边界渐变最大alpha, 默认为 0.4
+@property (nonatomic, assign) CGFloat minScrollShadowColorAlpha;     // 左侧表格边界阴影最小alpha, 默认为 0.1
 
 - (void)reloadData;
 

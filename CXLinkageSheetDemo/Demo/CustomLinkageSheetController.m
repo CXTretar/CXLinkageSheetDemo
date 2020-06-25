@@ -70,8 +70,8 @@
     _linkageSheetView.innerLineColor = LightGrayColor;
     _linkageSheetView.innerLineWidth = 1.0f;
     _linkageSheetView.bounceEnabled = YES;
+    _linkageSheetView.showScrollShadow = YES;
     [self.view addSubview:_linkageSheetView];
-    
 }
 
 - (void)loadData {
@@ -82,7 +82,7 @@
     self.firstGroupParamsModel = _firstCarModel.groupParamsViewModelList.firstObject;
     
     self.linkageSheetView.rightTableCount = self.dataArray.count;
-    [self.linkageSheetView reloadData];    
+    [self.linkageSheetView reloadData];
 }
 
 #pragma mark - CXLinkageSheetViewDelegate
@@ -92,7 +92,7 @@
 - (void)leftTableView:(UITableView * _Nullable)tableView didSelectRowAtIndexPath:(NSIndexPath * _Nullable)indexPath {
     GroupParamsModel *groupParamsModel = self.firstCarModel.groupParamsViewModelList[indexPath.section];
     ParamlistModel *paramlistModel = groupParamsModel.paramList[indexPath.row];
-
+    
     NSLog(@"%@ -- %@", indexPath, paramlistModel.yy_modelDescription);
 }
 
@@ -149,7 +149,7 @@
 #pragma mark - 表格单独设置每一行的高度
 
 - (CGFloat)heightForSheetViewForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ([indexPath isEqual:[NSIndexPath indexPathForRow:0 inSection:0]]) {
+    if (indexPath.row == 0) {
         return 100;
     }
     return 50;
@@ -167,7 +167,7 @@
 
 - (UIView *)createLeftItemWithContentView:(UIView *)contentView indexPath:(NSIndexPath *)indexPath {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, contentView.bounds.size.width - 20, contentView.bounds.size.height)];
-  
+    
     label.font = [UIFont systemFontOfSize:10];
     label.textAlignment = NSTextAlignmentLeft;
     label.numberOfLines = 0;

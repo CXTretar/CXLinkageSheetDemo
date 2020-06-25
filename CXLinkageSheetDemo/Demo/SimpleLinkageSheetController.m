@@ -67,6 +67,7 @@
     _linkageSheetView.leftTableCount = _leftDataArray.count;
     _linkageSheetView.rightTableCount = _rightDataArray.count;
     _linkageSheetView.dataSource = self;
+    _linkageSheetView.showScrollShadow = YES;
     [_linkageSheetView reloadData];
 }
 

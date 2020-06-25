@@ -42,10 +42,31 @@
 @property (nonatomic, assign) CGFloat height;
 
 @property (nonatomic, strong) UIView *shadowBorderView;
+@property (nonatomic, strong) CAGradientLayer * gradientLayer;
 
 @end
 
 @implementation CXLinkageSheetView
+
+- (void)setScrollShadowColor:(UIColor *)scrollShadowColor {
+    _scrollShadowColor = scrollShadowColor;
+    [self setupShadowLayer];
+}
+
+- (void)setScrollShadowWidth:(CGFloat)scrollShadowWidth {
+    _scrollShadowWidth = scrollShadowWidth;
+    [self setupShadowLayer];
+}
+
+- (void)setMaxScrollShadowColorAlpha:(CGFloat)maxScrollShadowColorAlpha {
+    _maxScrollShadowColorAlpha = maxScrollShadowColorAlpha;
+    [self setupShadowLayer];
+}
+
+- (void)setMinScrollShadowColorAlpha:(CGFloat)minScrollShadowColorAlpha {
+    _minScrollShadowColorAlpha = minScrollShadowColorAlpha;
+    [self setupShadowLayer];
+}
 
 - (CGFloat)width {
     return self.bounds.size.width;
@@ -54,6 +75,7 @@
 - (CGFloat)height {
     return self.bounds.size.height;
 }
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         self.outLineColor = [UIColor lightGrayColor];
@@ -65,9 +87,13 @@
         self.sheetRowHeight = 44.f;
         self.sheetLeftTableWidth = self.width / 3.0;
         self.sheetRightTableWidth = self.width / 3.0;
+        
+        self.scrollShadowColor = [UIColor lightGrayColor];
+        self.scrollShadowWidth = 10;
+        self.maxScrollShadowColorAlpha = 0.4;
+        self.minScrollShadowColorAlpha = 0.1;
+        
         [self setupUI];
-        
-        
     }
     return self;
 }
@@ -146,15 +172,23 @@
         [self addSubview:bottomLine];
     }
     
-    CGFloat x = _sheetLeftTableWidth - 1;
-    CGFloat y = 0;
-    CGFloat width = 10;
-    CGFloat height = self.height;
-    _shadowBorderView = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
-    UIImageView *imageView = [self colorGradientChangeWithSize:CGSizeMake(width, height) startColor:[self getNewColorWith:[UIColor lightGrayColor] alpha:0.4] endColor:[self getNewColorWith:[UIColor lightGrayColor] alpha:0.1]];
-    [_shadowBorderView addSubview:imageView];
+    [self setupShadowLayer];
 }
 
+- (void)setupShadowLayer {
+    CGFloat x = _sheetLeftTableWidth - 1;
+    CGFloat y = 0;
+    CGFloat width = _scrollShadowWidth;
+    CGFloat height = self.height;
+    _shadowBorderView = [[UIView alloc] initWithFrame:CGRectMake(x, y, width, height)];
+    _gradientLayer = [CAGradientLayer layer];
+    _gradientLayer.frame = _shadowBorderView.bounds;
+    _gradientLayer.colors = @[(__bridge id)[self getNewColorWith:_scrollShadowColor alpha:_maxScrollShadowColorAlpha].CGColor,(__bridge id)[self getNewColorWith:_scrollShadowColor alpha:_minScrollShadowColorAlpha].CGColor];
+    _gradientLayer.startPoint = CGPointMake(0, 0);
+    _gradientLayer.endPoint = CGPointMake(1, 0);
+    _gradientLayer.locations = @[@0,@1];
+    [_shadowBorderView.layer addSublayer:_gradientLayer];
+}
 
 - (UIColor *)getNewColorWith:(UIColor *)color alpha:(CGFloat)alpha {
     CGFloat red = 0.0;
@@ -164,33 +198,6 @@
     [color getRed:&red green:&green blue:&blue alpha:&oldAlpha];
     UIColor *newColor = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
     return newColor;
-}
-
-- (UIImageView *)colorGradientChangeWithSize:(CGSize)size
-                                  startColor:(UIColor *)startcolor
-                                    endColor:(UIColor *)endColor {
-    
-    if (CGSizeEqualToSize(size, CGSizeZero) || !startcolor || !endColor) {
-        return nil;
-    }
-    
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.frame = CGRectMake(0, 0, size.width, size.height);
-    
-    CGPoint startPoint = CGPointZero;
-    gradientLayer.startPoint = startPoint;
-    
-    CGPoint endPoint = CGPointMake(1.0, 0.0);
-    
-    gradientLayer.endPoint = endPoint;
-    
-    gradientLayer.colors = @[(__bridge id)startcolor.CGColor, (__bridge id)endColor.CGColor];
-    UIGraphicsBeginImageContext(size);
-    [gradientLayer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:image];
-    return imgView;
 }
 
 - (void)configTableView {
@@ -354,21 +361,19 @@
 #pragma mark - UIScrollViewDelegate 分页滚动
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-     NSLog(@"%s", __func__);
-    if (scrollView == _rightContentView && scrollView.dragging) {
+    if (scrollView == _rightContentView && scrollView.dragging && _showScrollShadow) {
         [self addSubview:_shadowBorderView];
     }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    NSLog(@"%s", __func__);
-    if (scrollView == _rightContentView && !scrollView.dragging && !scrollView.decelerating) {
+    if (scrollView == _rightContentView && !scrollView.dragging && !scrollView.decelerating && _showScrollShadow) {
         [_shadowBorderView removeFromSuperview];
     }
 }
 
 - (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-    if (scrollView == _rightContentView && (targetContentOffset->x <= 0 || targetContentOffset->x >= _contentSizeWidth  - self.width + _sheetLeftTableWidth) && !scrollView.decelerating && !self.bounceEnabled) {
+    if (scrollView == _rightContentView && (targetContentOffset->x <= 0 || targetContentOffset->x >= _contentSizeWidth  - self.width + _sheetLeftTableWidth) && !scrollView.decelerating && !self.bounceEnabled && _showScrollShadow) {
         [_shadowBorderView removeFromSuperview];
     }
     
@@ -378,7 +383,6 @@
         targetContentOffset->y = targetOffset.y;
         
     }
-    
 }
 
 - (CGPoint)nearestTargetOffsetForOffset:(CGPoint)offset {
