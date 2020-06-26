@@ -4,6 +4,7 @@
 <img src="https://github.com/CXTretar/CXLinkageSheetDemo/blob/master/gif/normal.gif" width = "414" height = "896" alt="" align=center />
 <img src="https://github.com/CXTretar/CXLinkageSheetDemo/blob/master/gif/custom.gif" width = "414" height = "896" alt="" align=center />
 </div>
+
 # Update【更新】
 
 - 0.0.4 
